@@ -18,7 +18,7 @@ Each AI Property has a configured output type that determines the format of the 
 | Output type | What it produces | Example |
 |-------------|-----------------|---------|
 | **Yes / No** | A binary answer | "Does this company use Kubernetes?" → Yes |
-| **Enum** | One value from a set you define | "Primary industry vertical" → FinTech, HealthTech, DevTools, Other |
+| **Dropdown** | One value from a set you define | "Primary industry vertical" → FinTech, HealthTech, DevTools, Other |
 | **Score** | A numeric rating on a 0–10 scale | "How strong is this company's product-market fit signal?" → 7 |
 | **Freeform** | An open-ended text answer | "What is this company's primary competitive differentiator?" → "AI-powered supply chain optimization..." |
 
@@ -31,8 +31,9 @@ All output types include a 1–3 sentence description explaining the answer and 
 3. Fill in:
    * **Name** — A clear label (e.g., "Recent Funding Round").
    * **Instructions** — Tell the AI what to research and how to evaluate the answer. Be specific — the more detail you provide, the more accurate the output.
-   * **Output type** — Select Yes/No, Enum, Score, or Freeform.
-   * For **Enum**: Define the list of allowed values.
+   * **Output type** — Select Yes/No, Dropdown, Score, or Freeform.
+   * For **Dropdown**: Add at least 2 options for the AI to choose from.
+   * **Refresh Every (days)** — Enter the number of days before the answer is re-evaluated (e.g., 7). Leave blank for no expiration.
    * For **Score**: Optionally set the scale description to guide how the AI assigns ratings.
 4. Click **Save**.
 
@@ -57,14 +58,11 @@ When the AI researches a property for a company, it:
 
 Research results are stored per company and refreshed based on the property's refresh policy.
 
-## Refresh policy
+## Refresh interval
 
-Each property has a refresh policy that controls how often answers are re-evaluated:
+Each property has a **Refresh Every (days)** setting that controls how often answers are re-evaluated. Enter the number of days between re-research cycles (e.g., 1 for daily, 7 for weekly, 30 for monthly). Leave blank for no automatic expiration.
 
-* **Daily** — Re-research every day. Use for fast-changing signals (e.g., "Is this company actively hiring?").
-* **Weekly** — Re-research once per week. Use for moderately dynamic signals (e.g., "Has this company raised funding recently?").
-
-When a property value is still fresh according to its refresh policy, re-research is skipped to avoid unnecessary work.
+When a property's answer is still within its refresh interval, re-research is skipped to avoid unnecessary work. Use shorter intervals for fast-changing signals (e.g., hiring activity) and longer intervals for stable attributes (e.g., technology stack).
 
 ## Auto AI Research
 
@@ -75,7 +73,7 @@ Auto AI Research runs your property research automatically across companies in y
 1. Open the **AI Agent Builder** and select a property.
 2. In the property editor, find the **Auto Research** section.
 3. Toggle **Enable Auto Research**.
-4. Select the **frequency**: Daily or Weekly (weekly runs on Mondays).
+4. Set the **Refresh Every (days)** interval to control how often answers are re-evaluated.
 5. Select one or more **sales views** to target. The AI researches companies that appear in these views.
 6. Click **Save**.
 
@@ -84,7 +82,7 @@ Auto AI Research runs your property research automatically across companies in y
 When auto research is enabled:
 
 * The system evaluates all companies in the selected sales views.
-* Companies whose existing answer is stale (based on the refresh policy) are re-researched.
+* Companies whose existing answer has exceeded its refresh interval are re-researched.
 * Companies with fresh answers are skipped.
 * Results are stored with updated evidence and citations.
 
@@ -111,7 +109,7 @@ After research has run across companies, you can view the distribution of answer
 The distribution view shows:
 
 * **Yes/No properties** — Count and percentage of Yes vs. No answers.
-* **Enum properties** — Breakdown by each enum value.
+* **Dropdown properties** — Breakdown by each option.
 * **Score properties** — Distribution across the 0–10 scale.
 * **Freeform properties** — Summary of the most common themes.
 
@@ -149,7 +147,7 @@ Use distributions to validate that your property is producing useful signal. If 
 </Accordion>
 
 <Accordion title={"Why are some companies skipped during auto research?"}>
-  Companies are skipped when their existing answer is still fresh according to the refresh policy. If you need to force a full re-evaluation, use the manual trigger with the resync option.
+  Companies are skipped when their existing answer is still within its refresh interval. If you need to force a full re-evaluation, use the manual trigger with the resync option.
 </Accordion>
 
 <Accordion title={"Can I use AI Properties without auto research?"}>

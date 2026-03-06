@@ -34,7 +34,7 @@ The AI has no criteria to evaluate. Every answer will be vague.
 ### Strong instructions (Score property)
 > "Evaluate how mature this company's data stack is on a 0–10 scale. Look for: technology mentions on their engineering blog, job posting requirements, conference talks by their engineers, and integration partnerships. Score 8–10 if they run modern cloud-native data infrastructure (Snowflake, Databricks, dbt, Kafka). Score 5–7 if they use traditional enterprise tools (Oracle, Teradata) or are mid-migration. Score 0–4 if there is no evidence of significant data infrastructure investment."
 
-### Strong instructions (Enum property)
+### Strong instructions (Dropdown property)
 > "Determine this company's primary cloud provider. Check their job postings (required skills/certifications), engineering blog, case studies, and technology partner pages. Classify as: AWS (Amazon Web Services, EC2, S3, Lambda references), GCP (Google Cloud, BigQuery, GKE references), Azure (Azure, Microsoft Cloud references), Multi-cloud (clear evidence of two or more), or Unknown (insufficient evidence). If a company uses AWS for infrastructure but BigQuery for analytics, classify as Multi-cloud."
 
 ## Common mistakes
@@ -50,6 +50,6 @@ After running research across your pipeline, check the **value distribution** in
 
 - **Yes/No properties** — If over 80% answer the same way, the question is too broad or too narrow. Adjust criteria.
 - **Score properties** — Scores should spread across the range. If everything clusters at 5–7, your scale descriptions need clearer differentiation.
-- **Enum properties** — All enum values should have reasonable representation. If one value captures 90%+ of companies, consider splitting it.
+- **Dropdown properties** — All options should have reasonable representation. If one option captures 90%+ of companies, consider splitting it.
 
 For the full research workflow, see [AI Properties](/sales-agents/ai-properties).

@@ -37,8 +37,8 @@ Use these in the prospecting Signals tab to help the AI personalize outreach con
 
 ### Technology stack
 
-- **Output type:** Enum
-- **Values:** AWS, GCP, Azure, Multi-cloud, On-premise, Unknown
+- **Output type:** Dropdown
+- **Options:** AWS, GCP, Azure, Multi-cloud, On-premise, Unknown
 - **Instructions:** "Determine the company's primary cloud infrastructure provider. Check job postings (required certifications and skills), engineering blog posts, case studies, and technology partner pages. Classify as Multi-cloud if there is clear evidence of two or more providers in production use. Classify as On-premise if the company primarily runs its own data centers. Classify as Unknown if there is insufficient evidence."
 
 ### Primary use case for [your product category]
@@ -48,8 +48,8 @@ Use these in the prospecting Signals tab to help the AI personalize outreach con
 
 ### Competitive tools in use
 
-- **Output type:** Enum
-- **Values:** [Competitor A], [Competitor B], [Competitor C], Multiple, None detected, Unknown
+- **Output type:** Dropdown
+- **Options:** [Competitor A], [Competitor B], [Competitor C], Multiple, None detected, Unknown
 - **Instructions:** "Check the company's job postings for required tool experience, their technology stack on BuiltWith or similar tools, case studies, and G2/TrustRadius reviews they have authored. Classify based on which competitor's product they currently use. Classify as Multiple if evidence points to more than one. Classify as None detected if no competitive tools are found."
 
 ### Company pain points
@@ -75,8 +75,8 @@ Use these to evaluate ICP match across your pipeline. Useful for scoring and pri
 
 ### Annual revenue range
 
-- **Output type:** Enum
-- **Values:** Under $10M, $10M–$50M, $50M–$200M, $200M–$1B, Over $1B, Unknown
+- **Output type:** Dropdown
+- **Options:** Under $10M, $10M–$50M, $50M–$200M, $200M–$1B, Over $1B, Unknown
 - **Instructions:** "Estimate the company's annual revenue range using public sources: funding announcements, press releases mentioning revenue milestones, employee count (as a proxy), Crunchbase, PitchBook, or similar databases. If the company is public, use reported revenue. For private companies, use the best available estimate. If insufficient evidence exists, classify as Unknown."
 
 ### Product-market fit maturity
@@ -103,8 +103,8 @@ Use these to evaluate ICP match across your pipeline. Useful for scoring and pri
 ### Sales / Revenue
 
 **Sales team complexity**
-- **Output type:** Enum
-- **Values:** Founder-led sales, Small team (1–5 reps), Mid-size team (6–20 reps), Large team (20+ reps), Unknown
+- **Output type:** Dropdown
+- **Options:** Founder-led sales, Small team (1–5 reps), Mid-size team (6–20 reps), Large team (20+ reps), Unknown
 - **Instructions:** "Estimate the size and structure of this company's sales organization. Check LinkedIn for employees with sales titles (AE, SDR, BDR, Account Manager, Sales Manager, VP Sales), the company's team page, and recent job postings. Founder-led sales means the CEO or founders are the primary sellers with no dedicated sales hires. If insufficient evidence exists, classify as Unknown."
 
 ---
@@ -113,7 +113,7 @@ Use these to evaluate ICP match across your pipeline. Useful for scoring and pri
 
 1. Navigate to the **AI Agent Builder** and click **Add Property**.
 2. Copy the **name** and **instructions** from an example above.
-3. Select the matching **output type** (and add enum values if applicable).
+3. Select the matching **output type** (and add dropdown options if applicable).
 4. **Customize the instructions** for your specific product and ICP — the bracketed placeholders (e.g., `[your product area]`) must be replaced with your details.
 5. Save and run research on a few test companies to validate the output quality.
 
