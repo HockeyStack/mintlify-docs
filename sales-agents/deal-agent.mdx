@@ -1,0 +1,101 @@
+---
+title: "Deal Agent"
+description: "The Deal Agent is an AI-powered assistant that lives on each deal's detail page. It provides an interactive chat interface where you can ask questions about ..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The Deal Agent is an AI-powered assistant that lives on each deal's detail page. It provides an interactive chat interface where you can ask questions about a deal, get insights from its full history, and receive recommendations — all grounded in the deal's context (CRM data, calls, emails, meetings, and stakeholders).
+
+## Getting Started
+
+1. Navigate to a deal's detail page.
+2. Open the **Agent** tab.
+3. If AI context has not been generated yet, click **Generate Context** in the toolbar and wait for completion.
+4. Once context is ready, the chat interface and task generation become available.
+
+## The Agent Toolbar
+
+The toolbar at the top of the Agent tab shows the current state and provides action buttons:
+
+| State             | What You See                                                                  |
+| ----------------- | ----------------------------------------------------------------------------- |
+| **No context**    | "Generate Context" button                                                     |
+| **Context ready** | "AI Context Ready" message with "Regenerate" and "Generate Tasks" buttons     |
+| **In progress**   | Spinner with step details (e.g., "Generating context…") and a "Cancel" button |
+
+## Chat Interface
+
+The left panel is a conversational chat where you can interact with the deal agent.
+
+### Asking Questions
+
+Type your question in the input field and press Enter. Examples of useful questions:
+
+* "What are the main objections raised in the last call?"
+* "Who are the key decision-makers at this company?"
+* "What happened in the most recent email exchange?"
+* "What risks could stall this deal?"
+
+### Understanding Responses
+
+The agent responds with two parts:
+
+* **Reasoning** (collapsible) — Shows the agent's thought process. You can expand or collapse this section. Reasoning blocks show elapsed time so you can see how long the agent is thinking.
+* **Answer** — The agent's response, formatted in markdown with proper headings, lists, and emphasis.
+
+### Conversation Persistence
+
+Your chat history is preserved during your browser session. When you navigate away and return to the same deal, previous messages are loaded. Starting a **New Chat** clears the conversation and begins fresh.
+
+## Uploading Context
+
+You can enrich the agent's knowledge by uploading custom documents and images. See the Deal Context documentation for full details on uploading text and image files.
+
+Uploaded files appear in the **context panel** on the right side of the Agent tab. Each file shows its title, and you can click to view or delete it.
+
+## Generating Tasks
+
+From the toolbar, click **Generate Tasks** to have the AI recommend next steps for the deal. See the Deal Task Generation documentation for full details.
+
+## User Flow
+
+A typical workflow with the deal agent:
+
+1. **Generate Context** — One-time setup to load all deal data into the AI.
+2. **Review and Upload** — Optionally upload additional context (meeting notes, screenshots, etc.).
+3. **Chat** — Ask the agent questions to understand the deal's current state.
+4. **Generate Tasks** — Get AI-recommended next steps.
+
+## Constraints
+
+* **Context required**: The chat and task generation features are unavailable until context has been generated.
+* **CRM data dependency**: The quality of agent responses depends on the data available in your CRM and connected tools (Gong, email), and uploaded context
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why is the chat input disabled?">
+  The deal agent must be initialized first. Click "Generate Context" and wait for it to complete.
+</Accordion>
+
+<Accordion title="How does the agent know about my calls and emails?">
+  When context is generated, the system ingests data from your connected tools — Gong for call recordings and your CRM for email activity. The agent has access to this full history.
+</Accordion>
+
+<Accordion title="What if the agent gives an incorrect answer?">
+  The agent's knowledge is limited to the data that has been synced. If key information is missing from your CRM or call recordings, the agent may not have it. You can upload additional context to fill gaps.
+</Accordion>
+
+<Accordion title="Can multiple team members chat with the same deal agent?">
+  Yes. The deal's context is shared, but each user has their own separate chat conversation.
+</Accordion>
+
+<Accordion title="How do I start a fresh conversation?">
+  Click the **New Chat** button at the top of the chat panel. This clears the conversation history and starts over.
+</Accordion>
+</AccordionGroup>

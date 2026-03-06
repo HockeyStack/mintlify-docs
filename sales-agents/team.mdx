@@ -1,0 +1,147 @@
+---
+title: "Team"
+description: "The Team page provides managers with a hierarchical view of their sales team's task execution metrics. Use it to monitor daily performance, track completion ..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The Team page provides managers with a hierarchical view of their sales team's task execution metrics. Use it to monitor daily performance, track completion rates, identify coaching opportunities, and drill into individual or sub-team performance.
+
+## Who Should Use This Page
+
+The Team page is designed for **managers and team leads** who have direct reports. If you don't have direct reports in the system, this page will not appear in your navigation.
+
+## What You See
+
+### Team Scorecard
+
+The main view is a table showing each team member with their task metrics:
+
+| Column       | Description                                                          |
+| ------------ | -------------------------------------------------------------------- |
+| **Rep**      | Name, avatar, email, job title, and team size badge (for team leads) |
+| **Tasks**    | Completion rate and visual progress bar                              |
+| **Coaching** | Link to rep-specific coaching insights (when available)              |
+
+### Team Totals Row
+
+A summary row at the top aggregates metrics across all visible team members, giving you a quick read on overall team performance.
+
+### Team Lead Row
+
+When you drill into a sub-team, the team leader's personal stats are pinned at the top (marked with a crown icon) so you can compare their performance alongside their team.
+
+## User Hierarchy
+
+The Team page reflects your organization's reporting structure:
+
+* **Top-level view** — Shows your direct reports.
+* **Sub-team drill-down** — Click a team lead to see their direct reports. A breadcrumb trail tracks your navigation path.
+* **Multi-level support** — You can drill as deep as your org hierarchy goes.
+* **Team size badges** — Managers show the number of their direct reports next to their name.
+
+### Navigating the Hierarchy
+
+1. Start at your top-level team view.
+2. Click a team lead's row to drill into their team.
+3. Use the **breadcrumb trail** at the top to navigate back to any level.
+4. The URL updates as you navigate, so you can share links to specific team views.
+
+## Task Completion Metrics
+
+The Tasks column provides a detailed breakdown of execution performance.
+
+### Tasks Due Today or Earlier
+
+| Metric                    | Color | Meaning                                          |
+| ------------------------- | ----- | ------------------------------------------------ |
+| **Actioned on time**      | Green | Completed or dismissed on or before the due date |
+| **Actioned past due**     | Amber | Completed or dismissed, but after the due date   |
+| **Not actioned past due** | Red   | Still pending and past the due date              |
+
+### Tasks Due Later
+
+* **Total** — Future tasks not yet due.
+* **Completed** — Future tasks already completed.
+* **Dismissed** — Future tasks already dismissed.
+
+### Visual Progress Bar
+
+Each rep's row displays a segmented progress bar with color-coded sections matching the metrics above. Hover over the bar for a detailed breakdown with exact numbers.
+
+### Clicking Through to Tasks
+
+Hover over the task metrics to see a link that navigates to the Tasks page, pre-filtered for that specific rep. This lets you see exactly which tasks are pending, completed, or overdue.
+
+## User Roles
+
+User roles define categories for your team members and control daily task generation caps.
+
+### How Roles Work
+
+* Roles are created in **Workspace Settings > Team**.
+* Each role has a name and a **daily task cap** — the maximum number of tasks the AI generates per day for members in that role.
+* Common roles: AE (Account Executive), SDR (Sales Development Representative), Manager, etc.
+* The default daily cap is **10 tasks per role**.
+
+### Assigning Roles
+
+1. Navigate to **Workspace Settings > Team**.
+2. Create roles that match your team structure.
+3. Assign team members to their appropriate roles.
+4. Adjust daily caps per role as needed.
+
+Roles are also referenced in the Configuration page under Task Limits, where you can fine-tune caps.
+
+## Date Range Filtering
+
+The toolbar includes a date range selector to control the time window for metrics:
+
+* **This Week** (default) — Monday through today.
+* **Last Week** — Previous full week.
+* **Last 30 Days** — Rolling 30-day window.
+* **Custom range** — Pick any start and end date.
+
+All metrics recalculate based on the selected date range.
+
+## Constraints
+
+* The Team page only appears for users who have **direct reports** in the system.
+* Hierarchy is based on your reporting structure in workspace settings. If the hierarchy is incorrect, update it in workspace settings.
+* Task metrics are timezone-aware — calculations use your configured timezone.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why don't I see the Team page in my navigation?">
+  The Team page is only visible to users with direct reports. If you manage a team but don't see it, ensure your reporting relationships are correctly set up in your workspace settings.
+</Accordion>
+
+<Accordion title="How is the actioned rate calculated?">
+  Completion rate = (completed + dismissed) / total tasks for the selected date range. Both completed and dismissed tasks count as "actioned."
+</Accordion>
+
+<Accordion title="Why are dismissed tasks counted as "actioned"?">
+  Dismissing a task is a deliberate action — the rep reviewed it and decided not to act on it. This is valuable signal that the rep is triaging their workload, even if the task wasn't completed.
+</Accordion>
+
+<Accordion title="Can I see historical performance?">
+  Yes. Use the date range selector to view past weeks or a custom date range. This lets you track trends over time.
+</Accordion>
+
+<Accordion title="How do daily task caps affect the Team page?">
+  Daily caps (set per role in Configuration) limit how many tasks are generated. If a rep has a cap of 10 and consistently completes all 10, you might consider increasing their cap. If they regularly have unactioned tasks, the cap might be too high.
+</Accordion>
+
+<Accordion title="What does the crown icon mean?">
+  The crown icon marks the team leader when you drill into a sub-team view. Their personal stats are shown separately from their team's aggregate metrics.
+</Accordion>
+
+<Accordion title="How do I change a team member's role?">
+  Navigate to **Workspace Settings > Team** to manage role assignments.
+</Accordion>
+</AccordionGroup>

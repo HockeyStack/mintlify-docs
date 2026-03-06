@@ -1,0 +1,253 @@
+---
+title: "Configuration"
+description: "This guide walks through the full setup process for Sales Agents. Configuration spans multiple areas of the platform — from connecting data sources and defin..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+This guide walks through the full setup process for Sales Agents. Configuration spans multiple areas of the platform — from connecting data sources and defining your team structure, to setting up the building blocks that power AI-driven task generation.
+
+## Step 1: Connect Your Data Sources
+
+Navigate to **Integrations** to connect your CRM and other tools. Sales Agents requires:
+
+* **Salesforce** (or HubSpot) — CRM data is the foundation for deal and company context.
+* **Gong** — Call recordings and transcripts significantly improve agent output quality.
+* **Email** — Email activity should be flowing into your CRM.
+
+Without connected data sources, the AI has no data to build context from. These integrations must be active before any other configuration will be useful.
+
+## Step 2: Set Up User Roles and Team Members
+
+Navigate to **Workspace Settings > Team** to:
+
+* **Create roles** (e.g., AE, SDR, Manager). Each role gets a daily task cap that controls how many tasks the AI generates per day for members in that role.
+* **Assign roles to team members**. Only team members with an assigned role can be added to prospecting motions.
+* **Organize reporting hierarchies**. Reporting hierarchies allow managers to see their team's performance on the Team page.
+
+If no roles are configured, you will see a warning when setting up prospecting and will not be able to assign users to motions.
+
+## Step 3: Define Personas
+
+Personas describe the buyer types your reps target. Set them up on the **Atlas** page under the **Personas** card (also accessible from the prospecting configuration modal via the link).
+
+Each persona includes:
+
+* Name
+* Department and subdepartments
+* Job levels (e.g., VP, Director, Manager)
+* Job title keywords to include or exclude
+* Description of the persona
+
+Personas are required when configuring prospecting motions — each motion must target at least one persona.
+
+For further guidance, see [Personas](/sales-agents/configuration/personas).
+
+## Step 4: Define Account Segments
+
+Account segments define your ICP criteria — the types of companies you want to target. Set them up on the **Atlas** page under the **Account Segments** card.
+
+Account segments are required when configuring prospecting motions — each motion must target at least one segment.
+
+## Step 5: Define Products
+
+Products represent what your team is selling. Set them up on the **Atlas** page under the **Products** card.
+
+Each prospecting motion requires a product to be selected.
+
+## Step 6: Create AI Properties (Optional but Recommended)
+
+Navigate to the **AI Agent Builder** to create company-scoped AI properties. These are custom research signals the AI evaluates when researching accounts (e.g., "Is this company hiring for roles related to our product?", "Has this company recently raised funding?").
+
+Each property has an output type (Yes/No, Enum, Score, or Freeform) and produces structured, evidence-backed answers with citations. You can enable **Auto AI Research** to run property research automatically across companies in your target sales views on a daily or weekly schedule.
+
+AI properties you create here become available in the prospecting configuration's Signals tab, appear as signal cards on company pages, and feed into the AI-generated Signal Summary.
+
+For full details, see [AI Properties](/sales-agents/ai-properties).
+
+## Step 7: Configure Stakeholder Discovery (Optional)
+
+Navigate to **Settings > Account Intelligence** and open the **Stakeholder Mapping** section. Here you can enable automatic stakeholder discovery per sales view, so the system finds and enriches contacts across your target accounts.
+
+* Enable or disable discovery for each sales view.
+* Monitor stats per view: companies with stakeholders, total stakeholders discovered, and contacts with email addresses.
+* Use the **Preview** feature to test discovery on a specific company domain before enabling at scale.
+
+For full details, see [Stakeholder Discovery](/sales-agents/stakeholder-discovery).
+
+## Step 8: Configure Deal Task Generation
+
+Navigate to the **Atlas** page and open the **Deal Task Generation** card. This modal has two tabs: **Configure** and **Activity**.
+
+### Configure Tab
+
+1. **Enable Task Generation** — Toggle to turn automated deal task generation on or off. When disabled, no agents will run to generate tasks for your account executives. Existing tasks are not affected.
+2. **Account Executives** — Add the team members who should receive AI-generated deal tasks.
+   * Use the search field to find and add members.
+   * View selected members in the table below (showing name and email).
+   * Remove members using the action button on each row.
+3. **Preview** — After adding AEs, a preview section shows:
+   * **Total Deals** — Number of open deals matching the selected AEs.
+   * **Total Pipeline** — Aggregate pipeline value.
+   * A breakdown table showing deals and pipeline per AE.
+
+### Activity Tab
+
+Once deal task generation has run at least once, the Activity tab displays:
+
+| Metric                   | Description                                                       |
+| ------------------------ | ----------------------------------------------------------------- |
+| **Deal Coverage**        | Percentage of deals that have active tasks, with a progress bar.  |
+| **Active Tasks**         | Total count of pending or scheduled tasks across all deals.       |
+| **Acceptance Rate (7d)** | Percentage of tasks completed vs. dismissed over the last 7 days. |
+| **Last Context Sync**    | When the most recent context synchronization occurred.            |
+
+You can trigger an on-demand context sync by clicking **Sync Context**. A progress indicator shows the sync status (companies processed, failures, timestamps). Use this when you want fresh context across all qualifying deals without waiting for the overnight worker.
+
+See [Deal Task Generation](/sales-agents/deal-task-generation) for full details on how deal tasks work.
+
+## Step 9: Configure Prospecting Task Generation
+
+Navigate to the **Atlas** page and open the **Prospecting Task Generation** card. This modal has three tabs: **Motions**, **Task Limits**, and **Signals**.
+
+### Motions Tab
+
+Motions are your outreach strategies. Each motion defines who gets targeted, how, and by whom.
+
+**Creating a Motion**
+
+1. Click **Add Motion**.
+2. Fill in the required fields:
+   * **Motion Name** — A descriptive name (e.g., "Enterprise Product Launch Outreach").
+   * **Outreach Strategy Prompt** — Detailed instructions for the AI describing the outreach approach, tone, and goals.
+   * **Users** — Assign team members who will execute tasks from this motion. Only members with assigned roles are available.
+   * **Personas** — Select the buyer personas this motion targets.
+   * **Target Segments** — Choose which account segments (ICP criteria) to focus on.
+   * **Product** — Select the product this motion is associated with.
+3. Click **Save Motion**.
+
+**Managing Motions**
+
+* **Enable/Disable** — Toggle individual motions on or off with the switch. Disabled motions are skipped during task generation.
+* **Reorder** — Drag and drop motions to set priority rank. Higher-priority motions are shown first in dropdowns.
+* **Delete** — Remove motions that are no longer needed.
+
+**Task Types**
+
+Each motion generates tasks of specific types (displayed but not editable in the current version):
+
+* Email
+* LinkedIn message
+
+**Validation**
+
+A motion must have all required fields filled to be valid. If you attempt to save with missing fields, the system will show which fields need attention. Motions missing required fields cannot be enabled.
+
+### Task Limits Tab
+
+Set daily task generation caps per user role to prevent reps from being overwhelmed.
+
+* Each role shows its name and a **Daily Cap** input.
+* Adjust the number to control how many tasks the AI generates per day for members in that role.
+* The default daily cap is **10 tasks per role**.
+
+Roles are created and assigned in **Workspace Settings > Team** (Step 2). A link is provided in this tab for quick navigation.
+
+### Signals Tab
+
+Configure which AI properties the system evaluates during company research.
+
+* **Research Properties** — Select from your company-scoped AI properties. These determine what signals the AI looks for when analyzing target accounts.
+* If you need new AI properties, use the link provided to navigate to the AI Property builder.
+
+### Enabling Prospecting
+
+The master toggle in the top-right corner enables or disables prospecting for your entire workspace.
+
+**Requirements to enable:**
+
+* At least one valid motion with all required fields
+* At least one active user assigned across your motions
+
+If these requirements are not met when you save, prospecting will be automatically disabled with a notification explaining why.
+
+### Saving
+
+Click **Save Configuration** in the footer. The system validates all motions and settings before saving. If any motion is invalid and the configuration would otherwise be enabled, it is automatically disabled with a warning.
+
+See [Company Prospecting Task Generation](/sales-agents/company-prospecting-task-generation) for full details on how prospecting tasks work.
+
+## Testing and Iterating
+
+After completing your configuration, you should test it immediately rather than waiting for the overnight background worker.
+
+### How to Test
+
+1. **Save your configuration.**
+2. **Navigate to a company page** (for prospecting) or a **deal page** (for deal tasks).
+3. **Generate Context** — Click "Generate Context" on the Agent tab and wait for completion.
+4. **Generate Tasks** — For prospecting, select a motion and click "Generate Tasks." For deals, click "Generate Tasks" directly.
+5. **Review the output** — Open the Tasks tab and inspect the generated tasks. Check:
+   * Are the task types appropriate?
+   * Is the outreach tone matching your strategy prompt?
+   * Are the right contacts being targeted?
+   * Are email drafts and messages well-written?
+
+### Iterating
+
+If the tasks don't match your expectations:
+
+1. **Delete the generated tasks** from the Tasks tab.
+2. **Go back to the relevant configuration** and adjust the outreach strategy prompt, personas, segments, or other settings.
+3. **Save the updated configuration.**
+4. **Repeat the test** — Generate context and tasks again on the same company or deal.
+5. Continue iterating until the output quality meets your standards.
+
+### Why Not Wait for the Background Worker?
+
+The background worker runs overnight and processes all qualifying companies and deals automatically. However, it introduces a significant delay between configuration changes and seeing results. By manually testing on individual companies or deals, you get immediate feedback and can iterate quickly.
+
+Once you are satisfied with the quality of generated tasks on a few test accounts, you can be confident that the overnight worker will produce similar results at scale.
+
+## Constraints
+
+* You cannot save prospecting configuration while a new motion is still being edited — finish or cancel it first.
+* Motion names, outreach strategy prompts, users, personas, segments, and product are all required.
+* Duplicate user assignments within a motion are automatically prevented.
+* Changes only take effect after saving — closing without saving discards all edits.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="What order should I set things up in?">
+  Follow the steps in this guide sequentially. Data sources and team setup come first because everything else depends on them. Personas, segments, and products come next because prospecting motions reference them. AI properties, stakeholder discovery, deal task generation, and prospecting configuration come last.
+</Accordion>
+
+<Accordion title="Why was prospecting automatically disabled when I saved?">
+  This happens when the configuration no longer meets the minimum requirements (at least one valid, enabled motion with assigned users). Check that your motions have all required fields and at least one user assigned.
+</Accordion>
+
+<Accordion title="Where do I create user roles?">
+  Navigate to **Workspace Settings > Team**. You can create roles there and assign team members to them. Roles appear in the Task Limits tab of the prospecting configuration.
+</Accordion>
+
+<Accordion title="Can I assign the same rep to multiple motions?">
+  Yes. A rep can be assigned to any number of motions. They will receive tasks from each motion they are assigned to, subject to their role's daily cap.
+</Accordion>
+
+<Accordion title="What does the outreach strategy prompt do?">
+  This prompt instructs the AI on how to approach outreach for this motion. It guides tone, messaging strategy, and priorities when generating tasks. Be specific — the more detail you provide, the better the generated tasks will match your expectations.
+</Accordion>
+
+<Accordion title="How does the daily cap work?">
+  The daily cap limits how many tasks the AI generates for a rep in a single day, based on their assigned role. If a rep has a cap of 10 and already has 10 tasks generated today, no additional tasks will be created until the next day.
+</Accordion>
+
+<Accordion title="Can I configure deal task generation and prospecting independently?">
+  Yes. They are separate configurations on the Atlas page. You can enable one without the other, or configure both.
+</Accordion>
+</AccordionGroup>

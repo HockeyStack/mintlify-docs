@@ -1,0 +1,113 @@
+---
+title: "Companies"
+description: "The Companies page provides a filterable, sortable view of all accounts in your system. Use it to browse companies, assess engagement, review scoring, and dr..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The Companies page provides a filterable, sortable view of all accounts in your system. Use it to browse companies, assess engagement, review scoring, and drill into individual account pages for deeper analysis and agent interactions.
+
+## Companies List
+
+### What You See
+
+The companies table displays the following columns:
+
+| Column       | Description                                                               |
+| ------------ | ------------------------------------------------------------------------- |
+| **Company**  | Company name, domain, logo, and links to CRM records (Salesforce/HubSpot) |
+| **Stage**    | Current lifecycle stage and the date it was reached                       |
+| **Score**    | Account intelligence score (0–100) when enabled                           |
+| **Owner**    | The assigned sales rep ("No Owner" if unassigned)                         |
+| **Activity** | Touchpoint activity over the last 90 days shown as a mini timeline        |
+
+Column visibility may vary based on your workspace's enabled features.
+
+### Views
+
+The companies list supports saved views:
+
+* **My Companies** (default) — Filtered to show companies owned by you.
+* **All Companies** — Shows every company without owner filtering.
+* **Custom Views** — Create your own views with specific filters. You can rename, duplicate, and delete custom views.
+
+### Filtering
+
+Filter companies using the filter bar. Available filter categories include:
+
+* **Company Properties** — Name, domain, industry, employee count, country, state, city, annual revenue
+* **Stage and Deal filters** — Filter by pipeline stage or deal attributes
+* **Touchpoint filters** — Filter by engagement activity
+
+Active filters are encoded in the URL, so you can share filtered views with teammates.
+
+### Sorting
+
+Click any column header to sort. Default sort is by **Score** (descending). Hold Shift and click to add multi-column sorting.
+
+### Pagination
+
+The list shows 25 companies per page with manual pagination.&#x20;
+
+## Company Detail Page
+
+Click a company name to open its detail page.
+
+### Header
+
+Displays the company name, logo, domain (clickable), and account intelligence score (when enabled). Links to the corresponding Salesforce or HubSpot record are shown if integrated.
+
+### Properties Sidebar
+
+A collapsible right-side panel showing company attributes:
+
+* **Base properties**: Company Name, Owner, Industry, Type, Country, Employees, Annual Revenue
+* **Custom properties**: Additional properties configured for your workspace
+* Click **See All** to expand and view every available property
+
+### Tabs
+
+| Tab          | Description                                             | Availability                         |
+| ------------ | ------------------------------------------------------- | ------------------------------------ |
+| **Overview** | Account summary and key metrics                         | When Account Intelligence is enabled |
+| **Signals**  | AI-generated signal summary, scores, and AI Property research results. See [Signals](/sales-agents/signals) | Always                               |
+| **Journey**  | Full engagement timeline and activity history           | Always                               |
+| **People**   | Discovered contacts with filtering by department, seniority, persona, and engagement. See [People](/sales-agents/people) | When agents feature is enabled       |
+| **Contacts** | People associated with this company in CRM              | Always                               |
+| **Deals**    | Deals linked to this company in CRM                     | Always                               |
+| **Tasks**    | AI-generated and manual tasks for this company          | When agents feature is enabled       |
+| **Agent**    | AI company agent for chat, context, and task generation. See [Company Agent](/sales-agents/company-agent) | When agents feature is enabled       |
+
+## Constraints
+
+* Company data is sourced from your CRM. Properties are read-only in HockeyStack.
+* Scoring and signals require Account Intelligence to be enabled.
+* The Agent, Tasks, and People tabs require the agents feature to be enabled.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why don't I see the Score or Signals columns?">
+  These columns require Account Intelligence to be enabled for your workspace. Contact your admin.
+</Accordion>
+
+<Accordion title="Can I create custom views?">
+  Yes. Apply your desired filters, then save the current view with a custom name. You can rename, duplicate, or delete custom views at any time.
+</Accordion>
+
+<Accordion title="How do I see a company's CRM record?">
+  If Salesforce or HubSpot is connected, links to the CRM record appear next to the company name in both the list and detail views.
+</Accordion>
+
+<Accordion title="What does the Activity column show?">
+  It displays a mini timeline of touchpoint activity over the past 90 days, giving you a quick visual of engagement levels.
+</Accordion>
+
+<Accordion title="How is the Score calculated?">
+  The score is generated by the Account Intelligence model based on engagement signals, firmographic fit, and behavioral indicators. Scores range from 0 to 100.
+</Accordion>
+</AccordionGroup>

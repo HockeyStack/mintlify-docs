@@ -1,0 +1,111 @@
+---
+title: "Deals"
+description: "The Deals page provides a filterable, searchable list of all deals in your pipeline. From here you can drill into individual deals to view their journey, man..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The Deals page provides a filterable, searchable list of all deals in your pipeline. From here you can drill into individual deals to view their journey, manage tasks, and interact with the AI deal agent.
+
+## Deals List
+
+### What You See
+
+The deals table displays the following columns:
+
+| Column           | Description                                              |
+| ---------------- | -------------------------------------------------------- |
+| **Deal Name**    | The deal's name (clickable — opens the deal detail page) |
+| **Stage**        | Current deal stage in your pipeline                      |
+| **Created Date** | When the deal was created                                |
+| **Close Date**   | Expected or actual close date                            |
+| **Deal Owner**   | The rep who owns this deal                               |
+| **Status**       | Won (green), Lost (red), or Open (yellow)                |
+
+### Searching
+
+Use the search bar at the top to find deals by name. Results update as you type (with a brief debounce for performance).
+
+### Filtering
+
+Click the filter icon to open the filter panel. Available filter categories:
+
+* **Deal Stage** — Filter by one or more pipeline stages.
+* **Company Properties** — Filter by the associated company's attributes.
+* **Deal Properties** — Filter by custom deal properties.
+* **Touchpoint Properties** — Filter by integrated touchpoint data.
+* **Owner Properties** — Filter by deal owner attributes.
+
+Active filters display as chips below the filter bar. Remove individual filters by clicking the X on each chip, or clear all filters at once.
+
+### Sorting
+
+Click any column header to sort. The default sort is by **Close Date** (newest first). Click again to reverse the sort order.
+
+### Pagination
+
+The list uses infinite scroll — as you scroll down, more deals load automatically.
+
+## Deal Detail Page
+
+Click a deal name to open its detail page.
+
+### Header
+
+The header displays:
+
+* **Deal name**
+* **Company** name and logo (clickable — navigates to the company page)
+* **Key metrics**: Current stage, close date, and deal value
+
+### Tabs
+
+| Tab         | Description                                                                     | Availability                   |
+| ----------- | ------------------------------------------------------------------------------- | ------------------------------ |
+| **Journey** | Visual timeline showing the deal's progression through stages and touchpoints   | Always                         |
+| **Tasks**   | AI-generated and manual tasks associated with this deal                         | When agents feature is enabled |
+| **Agent**   | Interactive AI agent for deal analysis, context generation, and task generation | When agents feature is enabled |
+
+### Journey Tab
+
+Displays a timeline chart showing how the deal has moved through your pipeline. Filter by touchpoint types to focus on specific activity.
+
+### Tasks Tab
+
+Shows tasks linked to this deal. You can:
+
+* View existing tasks with their status, priority, and assignee.
+* Create new tasks directly from this tab (pre-filled with the deal's context).
+* See the [Tasks](/sales-agents/tasks) and [Deal Task Generation](/sales-agents/deal-task-generation) documentation for full details on task management.
+
+### Agent Tab
+
+The AI-powered deal agent lives here. See the [Deal Agent](/sales-agents/deal-agent) documentation for full details on generating context, uploading documents, generating tasks, and chatting with the agent.
+
+## Constraints
+
+* Deals data is sourced from your connected CRM (Salesforce or HubSpot). The list reflects what is available in your CRM.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why don't I see the Agent tab?">
+  The Agent tab requires the agents feature to be enabled for your workspace. Contact your admin or reach out to bugra@hockeystack.com.
+</Accordion>
+
+<Accordion title="Can I edit deal properties from this page?">
+  Deal properties are managed in your CRM. HockeyStack displays them in read-only mode.
+</Accordion>
+
+<Accordion title="How often is deal data refreshed?">
+  Deal data syncs from your CRM on a daily basis.
+</Accordion>
+
+<Accordion title="What does the Status badge mean?">
+  **Won** means the deal is closed-won, **Lost** means closed-lost, and **Open** means the deal is still active in your pipeline.
+</Accordion>
+</AccordionGroup>

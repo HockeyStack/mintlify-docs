@@ -1,0 +1,131 @@
+---
+title: "Company Agent"
+description: "The Company Agent is an AI-powered assistant that operates at the account level. It provides an interactive chat interface where you can ask questions about ..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The Company Agent is an AI-powered assistant that operates at the account level. It provides an interactive chat interface where you can ask questions about a company, generate AI context from the company's signals and activity, and trigger prospecting task generation based on configured motions.
+
+## How It Differs from the Deal Agent
+
+| Aspect               | Company Agent                                   | Deal Agent                            |
+| -------------------- | ----------------------------------------------- | ------------------------------------- |
+| **Scope**            | Company level                                   | Deal level                            |
+| **Task Type**        | Prospecting tasks via motions                   | Deal progression tasks                |
+| **Context Sources**  | Company signals, contacts, activity, past deals | Deal-specific CRM data, calls, emails |
+| **Document Uploads** | Not supported                                   | Supports text and image uploads       |
+| **Configuration**    | Uses motions from prospecting config            | Uses deal task generation config      |
+
+## Getting Started
+
+1. Navigate to a company's detail page.
+2. Open the **Agent** tab.
+3. Click **Generate Context** to initialize the AI with the company's data.
+4. Once context is ready, select a motion and generate tasks, or start chatting.
+
+## The Agent Toolbar
+
+The toolbar provides controls for context and task generation:
+
+| State             | What You See                                                                              |
+| ----------------- | ----------------------------------------------------------------------------------------- |
+| **No context**    | "Generate Context" button                                                                 |
+| **Context ready** | "AI Context Ready" with "Regenerate" button, motion dropdown, and "Generate Tasks" button |
+| **In progress**   | Spinner with step details and a "Cancel" button                                           |
+
+### Motion Selector
+
+When context is ready, a dropdown appears listing your enabled motions (sorted by priority). Select a motion before clicking "Generate Tasks" — each motion produces tasks tailored to its outreach strategy.
+
+## Chat Interface
+
+The chat panel lets you have a real-time conversation with the company agent. Type a question and press Enter.
+
+Examples of useful questions:
+
+* "What signals indicate this company is a good fit?"
+* "Who are the key contacts we should reach out to?"
+* "What has our engagement history looked like?"
+* "What pain points might this company have?"
+* "Based on their recent activity, what is the best outreach angle?"
+
+### Understanding Responses
+
+Responses stream in real time and include two parts:
+
+* **Reasoning** (collapsible) — Shows the agent's thought process with elapsed time. Reasoning auto-collapses once the answer starts streaming. Expand it to see how the agent arrived at its conclusions.
+* **Answer** — The agent's response, formatted with headings, lists, and emphasis.
+
+### Conversation Persistence
+
+Your chat history is preserved per company. When you return to the same company, previous messages are loaded so you can continue the conversation.
+
+Click **New Chat** to clear the history and start a fresh conversation.
+
+## Generating Prospecting Tasks
+
+1. Ensure context has been generated.
+2. Select a **motion** from the dropdown.
+3. Click **Generate Tasks**.
+4. Progress is shown in the toolbar.
+5. On completion, tasks appear in the company's Tasks tab.
+
+See the Company Prospecting Task Generation documentation for full details.
+
+## User Flow
+
+1. **Generate Context** — One-time setup to load company data into the AI.
+2. **Chat** — Ask the agent questions to understand the account.
+3. **Select Motion** — Choose the outreach strategy that fits.
+4. **Generate Tasks** — Get AI-recommended prospecting actions.
+5. **Execute** — Work through generated tasks in the Tasks tab.
+
+## Context Status
+
+The toolbar displays the current state of the company's AI context:
+
+* **No context generated** — "Generate Context" button is shown. Click to initialize.
+* **Context ready** — Shows "AI Context Ready" with the date of last generation. The motion dropdown and "Generate Tasks" button become available.
+* **In progress** — Shows a spinner with the current step (e.g., "Fetching company data...") and a "Cancel" button.
+
+When new data becomes available (new CRM activity, emails, or calls), click **Regenerate** to refresh the agent's knowledge.
+
+## Constraints
+
+* **Context required**: Chat and task generation are unavailable until context is generated.
+* **Motion required for tasks**: You must select a motion from the dropdown before generating tasks. The button is disabled if no motion is selected.
+* **Prospecting must be enabled**: The toolbar is hidden entirely if prospecting is disabled in your configuration. See the [Configuration](/sales-agents/configuration) documentation.
+* **No document uploads**: Unlike the deal agent, the company agent does not support uploading custom documents. Context is built entirely from system data.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why don't I see the Agent tab on a company page?">
+  The agents feature must be enabled for your workspace. Contact your admin or reach out to bugra@hockeystack.com.
+</Accordion>
+
+<Accordion title="Why is the toolbar not visible?">
+  The toolbar is hidden when prospecting is disabled. Enable prospecting in the Configuration settings.
+</Accordion>
+
+<Accordion title="Can I generate tasks for multiple motions?">
+  Yes, but one at a time. Select a motion, generate tasks, wait for completion, then select a different motion and generate again.
+</Accordion>
+
+<Accordion title="What happens when I regenerate context?">
+  The AI refreshes its knowledge with the latest company data (signals, contacts, activity). This does not affect existing tasks.
+</Accordion>
+
+<Accordion title="Why does the motion dropdown show "Select motion"?">
+  You need to choose a motion before generating tasks. If the dropdown is empty, check that you have enabled motions in your Configuration.
+</Accordion>
+
+<Accordion title="Can multiple team members use the company agent?">
+  Yes. The company's context is shared, but each user has their own chat conversation.
+</Accordion>
+</AccordionGroup>

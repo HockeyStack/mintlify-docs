@@ -1,0 +1,125 @@
+---
+title: "People"
+description: "The People tab on a company's detail page shows all contacts discovered and tracked at that account. You can filter by department, seniority, persona match, ..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The People tab on a company's detail page shows all contacts discovered and tracked at that account. You can filter by department, seniority, persona match, and engagement level to find the right people for outreach. The system automatically discovers contacts based on your configured personas and enriches them with email addresses, LinkedIn profiles, and employment status.
+
+## Accessing the People tab
+
+1. Navigate to the **Companies** page and click on a company.
+2. Open the **People** tab.
+
+## What you see
+
+Each person card displays:
+
+| Field | Description |
+|-------|-------------|
+| **Name** | Full name with link to LinkedIn profile (when available) |
+| **Job title** | Current role at the company |
+| **Department** | Organizational function (Engineering, Sales, Marketing, etc.) |
+| **Engagement** | Temperature indicator showing recent activity level |
+| **Email status** | Whether a verified email address is available |
+| **Status badge** | Employment changes: Recently Joined, Promoted, or Left the company |
+
+### Engagement levels
+
+| Level | Meaning |
+|-------|---------|
+| **On Fire** | Very high recent engagement with your company |
+| **Hot** | Strong recent engagement |
+| **Warm** | Some engagement activity |
+| **Cold** | Little to no recent engagement |
+
+### Email status
+
+| Status | Meaning |
+|--------|---------|
+| **Verified** | Email address confirmed and available |
+| **Enriching** | Email lookup in progress |
+| **Unverified** | Email found but not yet confirmed |
+| **No email** | No email address available |
+
+### Status badges
+
+| Badge | Meaning |
+|-------|---------|
+| **Joined** | Started at the company within the last 6 months |
+| **Promoted** | Changed to a more senior role within the last 6 months |
+| **Left** | No longer at the company (different employer detected) |
+
+## Filtering
+
+Use the filter bar to narrow the people list:
+
+* **Search** — Free-text search across names and titles.
+* **Department** — Filter by organizational function.
+* **Seniority** — Filter by job level (C-Level, VP, Director, Manager, etc.).
+* **Engagement** — Filter by engagement temperature.
+* **Personas** — Filter to people matching specific personas you have defined.
+
+## Grouping
+
+Use the **Group by** dropdown to organize the list:
+
+* **None** — Flat list of all contacts.
+* **Department** — Grouped by organizational function, with sub-grouping by seniority level within each department.
+* **Persona** — Grouped by which persona each contact matches.
+* **Engagement** — Grouped by engagement temperature.
+
+## Re-discovering contacts
+
+When you add or edit personas, you can trigger a fresh discovery to find new contacts matching updated criteria.
+
+1. Click the **Re-generate** button on the People tab.
+2. Select which persona to discover contacts for.
+3. The system searches for people matching the persona's department, seniority, title keywords, and description.
+4. New contacts appear in the list as they are discovered and enriched.
+
+A progress indicator shows the discovery status. Once complete, review the results to verify the right people were found.
+
+## How contact discovery works
+
+When discovery runs for a company (either manually or as part of the overnight background worker):
+
+1. The system identifies which personas are relevant based on your prospecting configuration.
+2. For each persona, it searches for people at the company matching the department, job level, and title keyword criteria.
+3. Matching contacts are enriched with email addresses and LinkedIn profile URLs.
+4. Employment status is checked — contacts who have left the company are flagged.
+
+Discovery results persist. Re-running discovery adds new contacts without removing existing ones (unless they are flagged as having left).
+
+## How People connect to other features
+
+| Feature | Connection |
+|---------|-----------|
+| **Prospecting task generation** | Tasks are generated targeting contacts from the People list that match the motion's personas |
+| **Company Agent** | The agent references discovered people when answering questions about the account |
+| **Personas** | Persona definitions control which contacts get discovered and how they are categorized |
+
+## Constraints
+
+* Contact data is sourced from your CRM, LinkedIn, and enrichment providers. Completeness depends on available public data.
+* Email enrichment runs asynchronously — newly discovered contacts may show "Enriching" status for a short period before email becomes available.
+* Discovery results depend on persona quality. Broad personas produce more contacts but with more noise. See the [Personas](/sales-agents/configuration/personas) documentation for guidance on writing effective persona definitions.
+
+## FAQ
+
+<AccordionGroup>
+**Why are some contacts marked as "Left"?** The system periodically checks employment status. When a contact's current employer no longer matches the company, they are flagged as having left. These contacts remain visible but are deprioritized for outreach.
+
+**Why don't I see any people for a company?** Contact discovery runs when company context is generated — either manually from the Agent tab or automatically by the overnight worker. If context has not been generated yet, the People tab may be empty. Trigger context generation first.
+
+**Can I manually add contacts?** Contacts are discovered automatically based on personas. To find specific types of contacts, create or refine a persona targeting the right department and seniority, then re-generate.
+
+**How often are contacts refreshed?** Contact data is refreshed when company context is regenerated. The overnight worker handles this automatically. You can also trigger a manual re-generation at any time.
+
+**Why is a contact's email showing as "Enriching" for a long time?** Email enrichment depends on external providers and may take longer for some contacts. If a contact remains in "Enriching" status for more than 24 hours, the email may not be available through current enrichment sources.
+</AccordionGroup>

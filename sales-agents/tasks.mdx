@@ -1,0 +1,267 @@
+---
+title: "Tasks"
+description: "The Tasks page is your central hub for managing AI-generated and manual tasks. It provides filtering, grouping, a detailed task drawer, and actions for compl..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The Tasks page is your central hub for managing AI-generated and manual tasks. It provides filtering, grouping, a detailed task drawer, and actions for completing, dismissing, or editing tasks.
+
+## Tasks List
+
+### Toolbar
+
+* **Task count badge** — Shows total number of tasks matching your current filters.
+* **Group by** dropdown — Switch between grouping by Priority or Due Date.
+* **Add Task** button — Create a new task manually.
+
+### Daily Progress Banner
+
+At the top of the task list, a banner shows your daily progress:
+
+* **Progress bar** — Visual indicator of today's completion rate.
+* **Stats** — "X/Y due today actioned (Z%)" with completed and dismissed breakdowns.
+* **Show/Hide actioned** — Toggle to display or hide tasks you have already completed or dismissed.
+
+### Filters
+
+| Filter       | Options                                                 |
+| ------------ | ------------------------------------------------------- |
+| **Due Date** | All, Past Due, Today, This Week, Next Week, No Due Date |
+| **Source**   | All Sources, Deal Tasks, Prospecting Tasks              |
+| **Deal**     | Dropdown of all deals that have associated tasks        |
+
+When filters are active, a **Clear filters** button appears. Active filters show "X of Y tasks" to indicate the filtered count.
+
+### Grouping
+
+**Group by Priority** (default):
+
+* Tasks are organized into sections: Urgent, High, Medium, Low.
+* Each section is collapsible and shows its task count.
+
+**Group by Due Date**:
+
+* Sections: Past Due, Today, Tomorrow, This Week, Next Week, Later, No Due Date.
+* Tasks within each section are sorted by their due date.
+
+### Task Rows
+
+Each task row shows:
+
+* **Task type icon** — Visual indicator of the type (email, phone, LinkedIn, etc.)
+* **Priority badge** — When grouped by due date, shows the priority level
+* **Task title** — Auto-generated or custom title
+* **Target** — Company logo or contact avatar with the target name
+* **Agent reasoning** — Truncated AI explanation of why this task was recommended
+* **Status badges** — Completed (green) or Dismissed (gray) for actioned tasks
+* **Due date** — Color-coded: red for overdue, orange for tomorrow, gray for future
+* **Assignee** — The assigned rep (shown in embedded views)
+
+Click any task row to open the task drawer.
+
+## Task Drawer
+
+The task drawer opens as a bottom panel and provides full task details in a three-column layout.
+
+### Left Column — Properties
+
+* **Contact** — Target contact name, avatar, and email
+* **Company** — Associated company name
+* **Priority** — Selectable priority level (Urgent, High, Medium, Low) — editable for pending tasks
+* **Due Date** — Calendar picker for setting or changing the due date
+* **Assignee** — The assigned rep
+* **Task Type** — Email, Phone Call, LinkedIn Message, LinkedIn Connection Request, SMS, or Generic
+* **Task ID** — Copyable unique identifier
+* **Timestamps** — When the task was completed or dismissed, if applicable
+* **Dismiss Reason** — Shown if the task was dismissed with a reason
+
+### Center Column — Content
+
+Content varies by task type:
+
+**Email Tasks:**
+
+* To address
+* Subject line (editable)
+* Email body (editable)
+* Copy buttons for subject and body
+
+**Phone Call Tasks:**
+
+* To address / phone number
+* Talking points list
+* Call objective
+
+**LinkedIn Message Tasks:**
+
+* Target contact info
+* Message content (editable)
+* Copy button
+
+**SMS Tasks:**
+
+* Recipients
+* Message body (editable)
+* Copy button
+
+Changes to content are **auto-saved** after a 1-second pause in editing.
+
+### Right Column — Reasoning & Related
+
+* **Agent Reasoning** — Expandable section showing why the AI generated this task.
+* **Related Tasks** — Other pending tasks for the same deal, showing type, title, priority, and assignee.
+
+## Task Actions
+
+### Completing a Task
+
+Click the **Complete** button (green, primary action) in the task drawer header. This marks the task as completed with a timestamp.
+
+### Dismissing a Task
+
+Click the **Dismiss** button in the task drawer header. A modal appears where you can optionally provide a reason (up to 1,000 characters). Dismiss reasons help the AI learn and improve future recommendations.
+
+### Deleting a Task
+
+Click the **Delete** button (red, admin only) to permanently remove a task. A confirmation dialog is shown before deletion.
+
+### Editing a Task
+
+* **Title** — Click the title in the drawer header to edit (pending tasks only).
+* **Priority** — Select a new priority from the properties panel.
+* **Due Date** — Pick a new date from the calendar picker.
+* **Content** — Edit email subjects, bodies, LinkedIn messages, and SMS content directly in the center panel. Changes auto-save.
+
+## Task Types
+
+| Type                            | Icon           | Description                                                        |
+| ------------------------------- | -------------- | ------------------------------------------------------------------ |
+| **Email**                       | Mail icon      | Send an email to a contact. Includes pre-drafted subject and body. |
+| **Phone Call**                  | Phone icon     | Make a call. Includes talking points and call objective.           |
+| **LinkedIn Message**            | LinkedIn icon  | Send a LinkedIn message. Includes draft message.                   |
+| **LinkedIn Connection Request** | LinkedIn icon  | Send a connection request on LinkedIn.                             |
+| **SMS**                         | Message icon   | Send a text message. Includes draft body.                          |
+| **Generic**                     | Clipboard icon | A general task with no specific channel.                           |
+
+## Task Statuses
+
+| Status        | Meaning                                                      |
+| ------------- | ------------------------------------------------------------ |
+| **Pending**   | Active task awaiting action                                  |
+| **Scheduled** | Task scheduled for a future date                             |
+| **Completed** | Task was completed by the rep                                |
+| **Dismissed** | Task was skipped/rejected by the rep                         |
+| **Cancelled** | Task was cancelled by the system (e.g., during task refresh) |
+
+## Task Sources
+
+| Source          | Meaning                                                        |
+| --------------- | -------------------------------------------------------------- |
+| **Deal**        | Generated from deal context via deal task generation           |
+| **Prospecting** | Generated from company context via prospecting task generation |
+
+## Creating a Task Manually
+
+1. Click the **Add Task** button in the toolbar.
+2. Select the task type.
+3. Fill in the details: title, priority, target contact/company/deal, assignee, due date.
+4. Add content specific to the task type (email body, talking points, etc.).
+5. Save the task.
+
+## Task AI Chat
+
+The task drawer includes an AI chat interface for refining and improving tasks. You can ask questions about the task's context or have the AI rewrite task content directly.
+
+### Chat mode
+
+In Chat mode, have a free-form conversation with the AI about the task. The AI has full context about the associated deal or company, the target contact, and the task content.
+
+Examples of useful questions:
+
+* "What do we know about this contact's priorities?"
+* "Is this the right tone for a first outreach to a VP?"
+* "What objections might this person raise?"
+* "Give me a different angle for this email based on their recent activity."
+
+Each response includes collapsible **Reasoning** (the AI's thought process) and an **Answer** with the AI's response.
+
+### Improve mode
+
+Improve mode produces specific suggestions for the task's content and properties that you can apply with one click.
+
+1. Switch to **Improve** mode using the mode selector.
+2. Describe what you want changed — "Make this email shorter and more direct", "Change the subject line to reference their recent funding round."
+3. The AI generates suggested changes to task content and properties.
+4. Review the suggestions.
+5. Click **Apply** to update the task.
+
+Improve mode can update:
+
+* **Task content** — Email subject and body, LinkedIn message text, SMS body, phone call talking points and objective.
+* **Task properties** — Title, priority, due date, task type, target contact details.
+
+Applied changes auto-save immediately. There is no automatic undo — if an applied change is not what you wanted, use Improve mode to describe the correction and apply the new suggestion.
+
+### Conversation persistence
+
+Chat history is preserved per task. When you return to the same task later, previous messages are loaded. Click **New Chat** to clear the history and start fresh.
+
+Chat and Improve modes share the same conversation context. Switching between modes continues the same thread.
+
+## Constraints
+
+* The default view shows **pending tasks only**. Toggle "Show actioned" to see completed and dismissed tasks.
+* Task content edits are auto-saved after a 1-second debounce — no manual save button needed.
+* Delete is restricted to admin users.
+* Dismissed tasks cannot be re-opened.
+* Completed tasks cannot be undone.
+* Task AI Chat requires the task's deal or company to have AI context generated. If context has not been generated, the chat is unavailable.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="How do I see tasks I already completed?">
+  Click the toggle in the daily progress banner to "Show actioned." This switches the view to display completed and dismissed tasks.
+</Accordion>
+
+<Accordion title="Can I bulk-complete or bulk-dismiss tasks?">
+  Currently, tasks must be actioned individually through the task drawer.
+</Accordion>
+
+<Accordion title="What does the daily progress percentage mean?">
+  It shows the percentage of tasks due today (or earlier) that have been completed or dismissed. It helps track your daily execution rate.
+</Accordion>
+
+<Accordion title="Why should I provide a dismiss reason?">
+  Dismiss reasons help the AI improve future recommendations. If tasks are consistently dismissed for a similar reason, the system can learn to avoid generating similar tasks.
+</Accordion>
+
+<Accordion title="Can I change a task's assignee?">
+  The assignee is set during task generation based on configuration. Reassignment is not currently supported from the task drawer.
+</Accordion>
+
+<Accordion title="How do I filter to see only deal tasks or only prospecting tasks?">
+  Use the **Source** filter in the filter bar. Select "Deal Tasks" or "Prospecting Tasks" to narrow the list.
+</Accordion>
+
+<Accordion title="What happens when I edit an email draft in the task drawer?">
+  Your changes are automatically saved after you stop typing for 1 second. The updated content is persisted and visible to anyone viewing the task.
+</Accordion>
+
+<Accordion title="Why is the "Past Due" section red?">
+  Tasks that are past their due date and still pending require immediate attention. The red color signals urgency.
+</Accordion>
+
+<Accordion title="Why is the AI chat unavailable on my task?">
+  The task must be associated with a deal or company that has AI context generated. Generate context from the Agent tab on the deal or company page first.
+</Accordion>
+
+<Accordion title="Can I use Chat mode just to ask questions without changing anything?">
+  Yes. Chat mode is purely conversational. It does not modify the task unless you switch to Improve mode and apply suggestions.
+</Accordion>
+</AccordionGroup>

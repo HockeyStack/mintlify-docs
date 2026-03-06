@@ -11,58 +11,50 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Sales Agents",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "sales-agents/overview",
+              "sales-agents/configuration"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Configuration",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "sales-agents/configuration/personas",
+              "sales-agents/account-segments",
+              "sales-agents/products",
+              "sales-agents/ai-properties",
+              "sales-agents/stakeholder-discovery"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Deals",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "sales-agents/deals",
+              "sales-agents/deal-context",
+              "sales-agents/deal-agent",
+              "sales-agents/deal-task-generation"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Companies",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
+              "sales-agents/companies",
+              "sales-agents/signals",
+              "sales-agents/people",
+              "sales-agents/company-agent",
+              "sales-agents/company-prospecting-task-generation"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Daily Workflow",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "sales-agents/tasks",
+              "sales-agents/meetings",
+              "sales-agents/team"
             ]
           }
         ]

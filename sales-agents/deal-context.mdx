@@ -1,0 +1,99 @@
+---
+title: "Deal Context"
+description: "Deal Context is the AI's knowledge base for each deal. When you generate context, the system gathers all available information about a deal — CRM data, call ..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+Deal Context is the AI's knowledge base for each deal. When you generate context, the system gathers all available information about a deal — CRM data, call recordings, email threads, meeting history, and stakeholder details — and organizes it into a persistent memory that powers the deal agent and task generation.
+
+## What Gets Collected
+
+When context is generated for a deal, the AI ingests:
+
+| Data Source         | What's Included                                                        |
+| ------------------- | ---------------------------------------------------------------------- |
+| **CRM Data**        | Deal properties, company profile, historical deals, contacts           |
+| **Call Recordings** | Gong call transcripts, call metadata, and participant details          |
+| **Email Activity**  | Email thread summaries and conversation history                        |
+| **Meetings**        | CRM meeting events with status (scheduled, occurred, recorded)         |
+| **Stakeholders**    | Contact profiles enriched with external data (title, role, background) |
+
+This context is stored persistently, so the AI retains knowledge across sessions and interactions.
+
+## How to Generate Context
+
+1. Navigate to a deal's detail page and open the **Agent** tab.
+2. Click **Generate Context**.
+3. A progress indicator shows the current step (e.g., "Starting…", "Fetching deal data…").
+4. Once complete, the toolbar updates to show "AI Context Ready."
+
+### Regenerating Context
+
+If new data has been added to the deal (new calls, emails, or meetings), click **Regenerate** to refresh the AI's knowledge. This replaces the existing context with an updated version.
+
+## Uploading Additional Context
+
+You can supplement the AI's knowledge by uploading your own documents or images.
+
+### Uploading Text
+
+1. Click the **Upload** button in the context panel.
+2. Select **Text** mode.
+3. Paste your content (call transcripts, meeting notes, prospect conversations, or other deal-relevant information).
+4. A title is auto-generated based on the content. You can edit it.
+5. Click **Upload**.
+
+### Uploading Images
+
+1. Click the **Upload** button in the context panel.
+2. Select **Image** mode.
+3. Drag and drop an image or click to browse your filesystem.
+4. Supported formats: **PNG** and **JPEG** only.
+5. The system extracts text from the image (OCR) and auto-generates a title.
+6. Review the extracted text and title, then click **Upload**.
+
+Uploaded files appear in the context list panel on the right side. You can view or delete them at any time.
+
+## How Context Powers Other Features
+
+* **Deal Agent Chat**: The agent uses context to answer questions about the deal with full awareness of its history and stakeholders.
+* **Task Generation**: The AI analyzes context to recommend next steps. Without context, task generation is unavailable.
+* **Background Sync**: Context is periodically refreshed in the background to stay current with new activity.
+
+## Constraints
+
+* Context must be generated before task generation or chat features are available.
+* Image uploads support **PNG and JPEG only**. Other formats are rejected.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="How long does context generation take?">
+  It depends on the amount of data available for the deal. Deals with many calls, emails, and contacts take longer. You can monitor progress in the toolbar.
+</Accordion>
+
+<Accordion title="Can I cancel context generation?">
+  Yes. Click the **Cancel** button that appears in the toolbar while generation is in progress.
+</Accordion>
+
+<Accordion title="What happens when I regenerate context?">
+  The AI refreshes all data sources and rebuilds its knowledge base for the deal. Uploaded custom documents are preserved.
+</Accordion>
+
+<Accordion title="Why does the AI need context before I can generate tasks?">
+  Task generation relies on understanding the deal's current state — who the stakeholders are, what conversations have happened, and where the deal stands. Without this context, the AI cannot make informed recommendations.
+</Accordion>
+
+<Accordion title="Is context shared across team members?">
+  Yes. Context is stored per deal, not per user. Any team member with access to the deal sees the same AI context.
+</Accordion>
+
+<Accordion title="What triggers a background context refresh?">
+  New activity on the deal (calls, emails, meetings synced from your CRM) can trigger automatic context updates.
+</Accordion>
+</AccordionGroup>

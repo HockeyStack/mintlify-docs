@@ -1,0 +1,115 @@
+---
+title: "Company Prospecting Task Generation"
+description: "Company Prospecting Task Generation uses AI to create outbound prospecting tasks for target accounts. Unlike deal task generation (which focuses on progressi..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+Company Prospecting Task Generation uses AI to create outbound prospecting tasks for target accounts. Unlike deal task generation (which focuses on progressing existing deals), prospecting task generation is designed for outreach to companies that match your ideal customer profile, driven by configured motions and outreach strategies.
+
+## Prerequisites
+
+* **The account must have an owner in your CRM.** Prospecting tasks are only generated for companies that have an assigned owner in Salesforce or HubSpot. Unowned accounts are not eligible.
+* **Prospecting must be enabled** in the Configuration settings.
+* **At least one motion** must be configured and enabled with assigned users.
+* **AI context must be generated** for the company before tasks can be created.
+* **The rep must be assigned** to the selected motion.
+
+## How to Generate Prospecting Tasks
+
+1. Navigate to a company's detail page and open the **Agent** tab.
+2. If context has not been generated, click **Generate Context** and wait for completion.
+3. Select a **motion** from the dropdown. Only enabled motions sorted by priority are shown.
+4. Click **Generate Tasks**.
+5. A progress indicator shows the current step.
+6. Once complete, tasks appear in the company's **Tasks** tab.
+
+## How It Works
+
+### Motion-Based Generation
+
+Each motion defines an outreach strategy. When you generate tasks for a motion, the system runs a multi-step pipeline:
+
+1. **Analyzes company context** — Reviews signals, contacts, activity history, and AI Property research results.
+2. **Creates task briefs** — The AI determines which actions would be most effective based on the motion's outreach strategy prompt.
+3. **Structures tasks** — Briefs are converted into concrete tasks with types, assignees, and target contacts matching the motion's personas.
+4. **Validates for duplicates** — The system checks against existing active tasks to prevent duplicate or conflicting recommendations.
+5. **Generates content** — Email drafts, LinkedIn messages, or call talking points are written, personalized to the assigned rep's writing style and the target contact's profile.
+6. **Persists results** — Validated tasks are saved and appear in the company's Tasks tab.
+
+### Task Review and Refresh
+
+When generating tasks for a company that already has active tasks:
+
+1. The AI reviews existing tasks and decides whether to **keep** (still relevant) or **cancel** (outdated).
+2. New tasks are generated to complement active ones.
+3. This prevents duplicate or conflicting recommendations.
+
+### Background Sync
+
+Prospecting tasks are also refreshed automatically overnight by a background worker. This means:
+
+* New tasks are generated daily for companies that qualify.
+* Stale tasks (no activity for 3+ days) trigger refreshed recommendations.
+* Context changes (new signals or contacts) trigger task updates.
+
+## What Gets Generated
+
+Each task includes:
+
+* **Task type** — Email or LinkedIn message (based on motion configuration).
+* **Assignee** — A rep assigned to the motion.
+* **Priority** — Urgent, high, medium, or low.
+* **Due date** — Recommended completion date.
+* **Pre-drafted content** — Email drafts or LinkedIn messages personalized to the target contact, using the rep's writing style.
+* **Agent reasoning** — Why the AI recommended this specific action.
+
+## Constraints
+
+* A maximum of **3 tasks** are generated when no active tasks exist.
+* A maximum of **2 additional tasks** are generated when active tasks already exist.
+* The selected motion must be **enabled** in your configuration.
+* The generating user must be **assigned** to the selected motion.
+* Tasks are **deduplicated** per assignee to avoid creating duplicates of existing tasks.
+* Daily task generation is capped per role (configured in Configuration > Task Limits).
+* The account must have an **assigned owner in your CRM**. Companies without a CRM owner are not eligible for prospecting task generation.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why is the "Generate Tasks" button disabled?">
+  Either context has not been generated, or no motion is selected. Generate context first, then select a motion from the dropdown.
+</Accordion>
+
+<Accordion title="Can I generate tasks for different motions on the same company?">
+  Yes. Select a different motion from the dropdown and click "Generate Tasks" again. Each motion generates its own set of tasks.
+</Accordion>
+
+<Accordion title="Why are only 2 new tasks generated instead of 3?">
+  When active tasks already exist for the company, the system limits new generation to 2 to avoid overwhelming the rep.
+</Accordion>
+
+<Accordion title="How does the AI personalize outreach?">
+  The system analyzes the rep's previous emails to build a writing style profile. Email drafts and LinkedIn messages are written in the rep's voice, referencing specific company signals and contact details.
+</Accordion>
+
+<Accordion title="When does the background worker run?">
+  The background sync runs overnight daily. It checks all qualified companies and generates or refreshes tasks automatically. You do not need to manually trigger this — it happens for all companies that have AI context generated.
+</Accordion>
+
+<Accordion title="What happens if I cancel task generation mid-way?">
+  The process is stopped immediately. No tasks are created or modified from the cancelled run. You can trigger generation again.
+</Accordion>
+
+<Accordion title="Why isn't a company getting prospecting tasks?">
+  The most common reason is that the company does not have an assigned owner in your CRM. Only accounts with a CRM owner are eligible. Also check that prospecting is enabled, at least one motion is configured, and the owner is assigned to a motion.
+</Accordion>
+
+<Accordion title="How are task types determined?">
+  Task types are defined in the motion configuration. The default types are email and LinkedIn message. The AI selects the most appropriate type for each recommended action based on the contact and context.
+</Accordion>
+</AccordionGroup>

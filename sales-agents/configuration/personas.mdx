@@ -1,0 +1,155 @@
+---
+title: "Personas"
+description: "Personas define the buyer profiles your team targets within prospect organizations. When you configure a persona, you're telling the AI exactly who matters a..."
+---
+
+## Overview
+
+Personas define the buyer profiles your team targets within prospect organizations. When you configure a persona, you're telling the AI exactly who matters at each account — their department, seniority, and role characteristics. This drives everything downstream: which stakeholders get identified, which contacts get discovered, and which tasks get generated.
+
+Without well-defined personas, the system has no targeting criteria. Prospecting motions, contact discovery workflows, and stakeholder mapping all depend on personas to function.
+
+## Where Personas Are Used
+
+| Feature                         | How Personas Apply                                                                                 |
+| ------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Stakeholder Mapping**         | Identifies and categorizes key people at accounts based on persona matches                         |
+| **Prospecting Task Generation** | Generates outreach tasks only for contacts matching the motion's selected personas                 |
+| **Contact Discovery Workflows** | Searches internal databases, LinkedIn, and enrichment sources for people matching persona criteria |
+
+## Persona Fields
+
+Each persona consists of required and optional fields that control how precisely the system targets contacts.
+
+### Required Fields
+
+* **Name** — A unique, descriptive label for the persona (e.g., "VP of Engineering", "Security Decision Maker")
+* **Department** — The organizational function this persona belongs to (e.g., Engineering and Technical, Sales, Marketing)
+* **Job Levels** — One or more seniority tiers (e.g., C-Level, Director, Manager). At least one is required.
+* **Description** — A natural-language explanation of who this persona represents, what they care about, and why they matter to your sales process. Maximum 1,000 characters. The AI reads this description when generating tasks and evaluating contacts — make it specific.
+
+### Optional Fields
+
+* **Subdepartments** — Narrow the department further (e.g., under Engineering: "Cybersecurity", "DevOps", "Cloud / Mobility"). Available subdepartments depend on the selected department.
+* **Job Title Keywords (Include)** — Keywords that should appear in a contact's title for a match (e.g., "security", "infrastructure", "platform"). Comma-separated.
+* **Job Title Keywords (Exclude)** — Keywords that disqualify a contact even if other criteria match (e.g., "intern", "assistant", "coordinator"). Comma-separated.
+
+## How to Create a Persona
+
+1. Navigate to **Atlas** and open the **Personas** section.
+2. Click **Add Persona**.
+3. Fill in the required fields: name, department, at least one job level, and description.
+4. Optionally add subdepartments, include keywords, and exclude keywords to refine targeting.
+5. Click **Add Persona** to save.
+
+Personas can also be created inline when configuring a Contact Discovery workflow node.
+
+## How to Edit or Delete a Persona
+
+* **Edit**: Hover over a persona card and click the edit icon. Modify any field and click **Save Changes**.
+* **Duplicate**: Hover and click the copy icon to create a variant based on an existing persona.
+* **Delete**: Hover and click the delete icon. Deleting a persona removes its entire version history and triggers cleanup — stakeholders that only matched the deleted persona are soft-deleted from the account.
+
+## Building Effective Personas
+
+The quality of your personas directly impacts every AI-generated output. A vague persona produces vague tasks. A precise persona produces targeted, actionable outreach.
+
+### Good vs. Bad Personas
+
+**Good: "DevOps Decision Maker"**
+
+* Department: Engineering and Technical
+* Subdepartments: DevOps, Cloud / Mobility
+* Job Levels: Director, Head, Manager
+* Include Keywords: devops, infrastructure, platform, SRE, reliability
+* Exclude Keywords: intern, junior, associate
+* Description: "Technical leaders responsible for infrastructure and deployment strategy. They evaluate CI/CD tools, cloud platforms, and developer productivity solutions. Often report to CTO or VP of Engineering. Key pain points include deployment velocity, incident response, and infrastructure costs."
+
+This persona works because it combines structural filters (department, level, subdepartment) with semantic guidance (description explaining what they care about and their pain points). The AI uses both when generating outreach.
+
+**Bad: "Engineering"**
+
+* Department: Engineering and Technical
+* Job Levels: Director, Head, Manager, Senior, Specialist
+* Description: "People in engineering."
+
+This persona fails because it's too broad — it matches nearly everyone in a technical role. The description gives the AI nothing to work with when personalizing tasks. The system will generate generic outreach because it has no context about what this persona cares about.
+
+### Writing Strong Descriptions
+
+The description field is the most impactful free-text input for AI quality. Include:
+
+* **What they're responsible for** — "Owns the cloud infrastructure budget and vendor relationships"
+* **What they evaluate** — "Evaluates observability platforms, APM tools, and cost optimization solutions"
+* **Who they report to** — "Reports to CTO or VP of Engineering"
+* **Key pain points** — "Concerned with mean time to recovery, deployment frequency, and cloud spend"
+* **Why they matter to your deal** — "Often the technical champion who drives internal evaluation"
+
+Avoid generic descriptions like "important person in IT" or "senior leader." The AI interprets the description literally — specificity in, specificity out.
+
+### Using Include and Exclude Keywords Effectively
+
+**Include keywords** are an extra job-title filter. If you set them, a contact’s title must match at least one include keyword.
+
+Use include keywords when department + level is still too broad. Add multiple variants to avoid filtering out valid titles. For example: `SRE`, `site reliability`, `platform`, `infrastructure`.
+
+**Exclude keywords** prevent false positives. If you're targeting senior security professionals, adding `analyst`, `intern`, `associate` to the exclude list filters out junior roles that match on department but not seniority.
+
+Keywords are matched against job titles during contact discovery. They supplement — not replace — the department and job level filters.
+
+### Rule of thumb
+
+If you intuitively think your persona will match tens of people in a medium sized organization, or hundreds of people in a large organization, your persona is likely incorrect.
+
+### Common Patterns
+
+| Scenario                                       | Recommended Approach                                                                                             |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Targeting a specific C-suite role (e.g., CISO) | Single job level (C-Level), specific include keywords, narrow description                                        |
+| Targeting a buying committee across levels     | Multiple job levels (Director through C-Level), shared department, description explaining committee dynamics     |
+| Targeting technical evaluators                 | Mid-level job levels (Senior, Manager), subdepartment-specific, include keywords for tools/technologies they use |
+| Excluding adjacent roles                       | Use exclude keywords generously — "sales engineer" is not the same as "software engineer"                        |
+
+### How Many Personas to Create
+
+There is no hard limit, but aim for precision over volume. A prospecting motion with 2–3 well-defined personas will outperform one with 10 vague ones. Each persona you add to a motion expands the contact discovery search — more personas means more contacts discovered, but also more potential noise.
+
+Start with personas representing your primary buyer and technical champion. Add personas for economic buyers, influencers, or blockers as your process matures.
+
+## Testing and Iteration on Personas
+
+When you create / edit a persona definition, to test it out, you can:
+
+1. Sidebar > click **Companies**
+2. Search and click on any company that you want to test on
+3. Use online research to manually find contacts that you want HockeyStack to discover
+4. Go back to HockeyStack, now that you are on the details page of the selected company, click on the **People** tab
+5. Click **Re-generate** and wait until it completes
+6. Search the People table to validate both of the following:
+   1. All the people you manually found in your research are found in the People table
+   2. All the people in the People table (related to your persona) are actually intuitively matching what you want to see
+7. If any of the above 2 validations fail, go back and edit your persona definition and try the entire flow again, until you are satisfied with the persona definition.
+
+## Constraints
+
+* Persona names must be unique within your workspace
+* Description has a maximum length of 1,000 characters
+* At least one job level is required per persona
+* Department is required — the "Other" category is excluded from selection
+* Subdepartments are only available for departments that have defined subcategories
+
+## FAQ
+
+<AccordionGroup>
+**How long before a new persona takes effect?** Immediately for manual task generation. For background processing, the next overnight sync picks up new personas and applies them to eligible accounts.
+
+**Can I use the same persona across multiple motions?** Yes. A persona can be assigned to any number of prospecting motions. Each motion generates tasks independently based on its own outreach strategy.
+
+**What happens to existing tasks when I edit a persona?** Existing tasks are not affected. Updated persona criteria apply to future task generation cycles. The system creates a new version of the persona internally while preserving historical data.
+
+**Why aren't contacts being discovered for my persona?** Check that your persona criteria aren't too narrow. If you've specified a niche subdepartment, restrictive job levels, and multiple include keywords, the intersection may exclude valid contacts. Try broadening one dimension at a time.
+
+**Can I create personas during workflow configuration?** Yes. When setting up a Contact Discovery node in a workflow, you can create new personas inline without leaving the workflow builder.
+
+**How do keywords interact with department and job level filters?** Keywords are applied after department and job level. If **Include** is set, the job title must match at least one include keyword. This narrows results versus leaving Include blank. **Exclude** always removes matches, even if everything else matches.
+</AccordionGroup>

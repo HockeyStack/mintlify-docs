@@ -1,0 +1,108 @@
+---
+title: "Signals"
+description: "The Signals tab on a company's detail page gives you a data-driven view of how well an account fits your ICP, how ready they are to buy, and what specific si..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The Signals tab on a company's detail page gives you a data-driven view of how well an account fits your ICP, how ready they are to buy, and what specific signals the AI has identified. It combines AI-generated summaries, scoring, and individual AI Property research results into a single view.
+
+## Accessing signals
+
+1. Navigate to the **Companies** page and click on a company.
+2. Open the **Signals** tab.
+
+## Signal Summary
+
+At the top of the Signals tab, a summary card shows three AI-generated assessments:
+
+| Assessment | What it measures |
+|-----------|-----------------|
+| **Fit** | How well this company matches your ideal customer profile, scored 0–10 |
+| **Timing** | How ready this company is to buy right now, scored 0–10 |
+| **Context** | A narrative explanation of the account's current state and relevant factors |
+
+Each assessment includes a score visualization and a description explaining the reasoning. The summary is generated from the company's AI Property signals, engagement data, and intent signals.
+
+The summary is cached and refreshes when underlying signal data changes.
+
+## Score
+
+When scoring is enabled for your workspace, a score section shows the company's overall account score (0–100) with AI-generated reasoning.
+
+### Score reasoning
+
+The reasoning section provides a plain-language explanation of the score:
+
+* **Lead sentence** — A 1–2 sentence summary of the overall assessment.
+* **Strengths** — Up to 3 bullet points highlighting positive signals.
+* **Gaps** — Up to 2 bullet points highlighting areas of concern or missing data.
+
+Reasoning is generated from the scoring model's feature weights and the company's actual data. It explains which factors contributed most to the score in practical terms — not technical jargon.
+
+### Score visualization
+
+The score meter displays the numeric score on a color-coded arc:
+
+* **Red zone (0–33)** — Low score, weak fit or readiness.
+* **Orange zone (34–66)** — Moderate score, mixed signals.
+* **Green zone (67–100)** — High score, strong fit and readiness.
+
+## AI Property signals
+
+Below the summary and score, individual AI Property results are displayed as signal cards. Each card shows:
+
+* **Property name** — The question that was researched.
+* **Answer** — The structured output (Yes/No, an enum value, a score, or freeform text).
+* **Description** — A 1–3 sentence explanation of how the AI arrived at the answer.
+* **Citations** — Links to the evidence sources the AI used during research.
+
+For **Score** type properties, a score meter visualization displays the numeric value on the 0–10 scale.
+
+For **Enum** type properties, the selected value is highlighted from the set of possible options.
+
+## How signals are generated
+
+Signals come from multiple sources:
+
+| Source | What it produces |
+|--------|-----------------|
+| **AI Properties** | Structured research results from your configured properties (see [AI Properties](/sales-agents/ai-properties)) |
+| **Engagement data** | Activity signals from your CRM, email, calls, and website tracking |
+| **Intent data** | Third-party intent signals when available through connected integrations |
+| **Scoring model** | Overall account score and feature-level analysis |
+
+AI Property signals are generated when company context is built — either manually, by the overnight worker, or by auto AI research. Engagement and intent signals update as new data flows in from your integrations.
+
+## How signals connect to other features
+
+| Feature | Connection |
+|---------|-----------|
+| **Signal Summary** | Synthesizes all signals into Fit, Timing, and Context assessments |
+| **Prospecting task generation** | The AI references signals when deciding task priority and content |
+| **Company Agent** | The agent has access to all signals when answering questions |
+| **AI Properties configuration** | Properties selected in the prospecting Signals tab are researched during context generation |
+
+## Constraints
+
+* Signal Summary generation requires at least one AI Property to have a researched answer for the company.
+* Score reasoning is only available when scoring is enabled for your workspace.
+* Signals are read-only on this page. To change what gets researched, edit your AI Properties in the AI Agent Builder.
+
+## FAQ
+
+<AccordionGroup>
+**Why is the Signal Summary empty?** The summary requires AI Property data. If no properties have been researched for this company, generate context from the Agent tab or wait for the overnight worker to process the account.
+
+**How often does the Signal Summary refresh?** The summary refreshes when underlying signal data changes. If a new AI Property answer is generated or engagement data updates significantly, the summary recalculates.
+
+**Can I customize what appears in the Signals tab?** The signals shown depend on which AI Properties you have configured. Create new properties in the AI Agent Builder to add new signal types. See [AI Properties](/sales-agents/ai-properties) for details.
+
+**Why does the score reasoning mention "strengths" I don't agree with?** Score reasoning is generated from the scoring model's analysis. If the reasoning seems off, review the scoring configuration to ensure the features and weights reflect your actual ICP criteria.
+
+**What does it mean when a signal shows "No data"?** The property has not been researched for this company yet. Generate context from the Agent tab or enable auto AI research for the property to cover this company's sales view.
+</AccordionGroup>

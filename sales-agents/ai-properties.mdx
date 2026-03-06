@@ -1,0 +1,152 @@
+---
+title: "AI Properties"
+description: "AI Properties are custom research signals that the AI evaluates for each company in your pipeline. You define the question — \"Has this company recently raise..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+AI Properties are custom research signals that the AI evaluates for each company in your pipeline. You define the question — "Has this company recently raised funding?", "Is this company hiring for roles related to our product?" — and the system researches every target account to produce a structured, evidence-backed answer.
+
+AI Properties power multiple parts of the platform: they appear as signals on company pages, feed into prospecting task generation, and inform the AI agents when they reason about accounts.
+
+## Property output types
+
+Each AI Property has a configured output type that determines the format of the answer.
+
+| Output type | What it produces | Example |
+|-------------|-----------------|---------|
+| **Yes / No** | A binary answer | "Does this company use Kubernetes?" → Yes |
+| **Enum** | One value from a set you define | "Primary industry vertical" → FinTech, HealthTech, DevTools, Other |
+| **Score** | A numeric rating on a 0–10 scale | "How strong is this company's product-market fit signal?" → 7 |
+| **Freeform** | An open-ended text answer | "What is this company's primary competitive differentiator?" → "AI-powered supply chain optimization..." |
+
+All output types include a 1–3 sentence description explaining the answer and up to 3 citations linking to the evidence sources.
+
+## How to create an AI Property
+
+1. Navigate to the **AI Agent Builder** page.
+2. Click **Add Property**.
+3. Fill in:
+   * **Name** — A clear label (e.g., "Recent Funding Round").
+   * **Instructions** — Tell the AI what to research and how to evaluate the answer. Be specific — the more detail you provide, the more accurate the output.
+   * **Output type** — Select Yes/No, Enum, Score, or Freeform.
+   * For **Enum**: Define the list of allowed values.
+   * For **Score**: Optionally set the scale description to guide how the AI assigns ratings.
+4. Click **Save**.
+
+## Writing effective instructions
+
+The instructions field drives the quality of research output. Include:
+
+* **What to look for** — "Check the company's careers page, recent press releases, and LinkedIn job postings for roles mentioning Kubernetes, Docker, or container orchestration."
+* **How to evaluate** — "Answer Yes only if there is direct evidence of production usage, not just job postings mentioning the technology."
+* **Edge cases** — "If the company is a consultancy that implements the technology for clients but does not use it internally, answer No."
+
+Vague instructions produce vague answers. "Is this company a good fit?" gives the AI nothing to work with. "Does this company have an engineering team of 50+ that builds cloud-native applications on AWS or GCP?" gives it a concrete research target.
+
+## How research works
+
+When the AI researches a property for a company, it:
+
+1. Gathers available data about the company (CRM records, website, public sources).
+2. Searches the web for relevant evidence.
+3. Evaluates the evidence against your instructions.
+4. Produces a structured answer with the output value, a description explaining the reasoning, and citations linking to sources.
+
+Research results are stored per company and refreshed based on the property's refresh policy.
+
+## Refresh policy
+
+Each property has a refresh policy that controls how often answers are re-evaluated:
+
+* **Daily** — Re-research every day. Use for fast-changing signals (e.g., "Is this company actively hiring?").
+* **Weekly** — Re-research once per week. Use for moderately dynamic signals (e.g., "Has this company raised funding recently?").
+
+When a property value is still fresh according to its refresh policy, re-research is skipped to avoid unnecessary work.
+
+## Auto AI Research
+
+Auto AI Research runs your property research automatically across companies in your target sales views on a recurring schedule.
+
+### How to enable
+
+1. Open the **AI Agent Builder** and select a property.
+2. In the property editor, find the **Auto Research** section.
+3. Toggle **Enable Auto Research**.
+4. Select the **frequency**: Daily or Weekly (weekly runs on Mondays).
+5. Select one or more **sales views** to target. The AI researches companies that appear in these views.
+6. Click **Save**.
+
+### How it runs
+
+When auto research is enabled:
+
+* The system evaluates all companies in the selected sales views.
+* Companies whose existing answer is stale (based on the refresh policy) are re-researched.
+* Companies with fresh answers are skipped.
+* Results are stored with updated evidence and citations.
+
+### Monitoring progress
+
+After triggering a research run (or when the scheduled run starts):
+
+* The property editor shows a **progress indicator** with the number of companies processed out of the total.
+* You can check the status at any time — it updates automatically.
+* If a run is taking too long or you need to stop it, click **Cancel Research** to halt the current run.
+
+### Manual trigger
+
+You can trigger a research run on demand without waiting for the next scheduled cycle:
+
+1. Open the property in the AI Agent Builder.
+2. Click **Run Research Now**.
+3. Monitor progress in the status indicator.
+
+## Value distribution
+
+After research has run across companies, you can view the distribution of answers to understand how your target accounts break down.
+
+The distribution view shows:
+
+* **Yes/No properties** — Count and percentage of Yes vs. No answers.
+* **Enum properties** — Breakdown by each enum value.
+* **Score properties** — Distribution across the 0–10 scale.
+* **Freeform properties** — Summary of the most common themes.
+
+Use distributions to validate that your property is producing useful signal. If 95% of companies answer "Yes," the property may not be discriminating enough to be useful for prioritization.
+
+## Where AI Properties appear
+
+| Location | How they're used |
+|----------|-----------------|
+| **Company Signals tab** | Each property appears as a signal card with the answer, description, and citations |
+| **Signal Summary** | Properties feed into the AI-generated Fit, Timing, and Context scores |
+| **Prospecting configuration** | Properties can be selected as research signals in the Signals tab |
+| **Task generation** | The AI references property answers when deciding what tasks to create and how to prioritize |
+| **Company Agent chat** | The agent has access to property answers when responding to questions about a company |
+
+## Constraints
+
+* AI Properties are scoped to companies — they research company-level signals, not deal-level or contact-level.
+* Auto research processes companies in batches. Large sales views may take time to complete.
+* Each research operation consumes agent credits. See [Agent Credits](/sales-agents/agent-credits) for details.
+
+## FAQ
+
+<AccordionGroup>
+**How long does research take per company?** A few seconds per company. For large sales views with hundreds of companies, a full research run may take several minutes.
+
+**Can I edit a property after it has been researched?** Yes. Editing instructions or output type creates a new version of the property. Existing answers are preserved until the next research cycle refreshes them.
+
+**What happens if I change the output type?** Previous answers are kept as-is. New research produces answers in the updated format. The next auto research cycle or manual trigger re-evaluates all companies with the new output type.
+
+**Why are some companies skipped during auto research?** Companies are skipped when their existing answer is still fresh according to the refresh policy. If you need to force a full re-evaluation, use the manual trigger with the resync option.
+
+**Can I use AI Properties without auto research?** Yes. Properties are researched individually when company context is generated (either manually or by the overnight worker). Auto research is optional — it pre-computes answers across your sales views so they are ready before anyone visits the company page.
+
+**How do I know if my property instructions are good?** Check the value distribution after a research run. If answers cluster heavily on one value (e.g., 90%+ "Yes"), the question may be too broad. If descriptions are vague or citations are irrelevant, the instructions need more specificity.
+</AccordionGroup>

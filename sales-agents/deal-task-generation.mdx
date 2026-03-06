@@ -1,0 +1,147 @@
+---
+title: "Deal Task Generation"
+description: "Deal Task Generation uses AI to automatically create actionable tasks for your sales team based on deal context and activity history."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+Deal Task Generation uses AI to automatically create actionable tasks for your sales team based on deal context and activity history.
+
+Once AI context has been generated for a deal, you can trigger task generation to receive recommended next steps — such as follow-up emails, phone calls, or LinkedIn messages — tailored to each deal's current state.
+
+Tasks are assigned to the deal's account executive but may also be assigned to other internal stakeholders — such as sales engineers, CSMs, or executives — when the AI determines their involvement could positively affect the deal outcome. All tasks come with pre-drafted content (email drafts, talking points, call scripts) personalized to match the assignee's writing style.
+
+## How Task Generation Runs
+
+There are two pathways for generating deal tasks:
+
+1. **Automatic (overnight)** — A background worker runs daily overnight. It automatically generates context and tasks for all qualifying deals. This is the primary pathway — once configured, tasks are produced at scale without manual intervention. Context is also generated automatically as part of this process, so you do not need to manually click "Generate Context" for every deal.
+2. **Manual (on-demand)** — You can trigger context and task generation manually from a deal's Agent tab. This is primarily useful for **testing and iterating** on your configuration. Generate context, generate tasks, review the output, and adjust settings before the overnight worker runs at scale.
+
+## Prerequisites
+
+* **Account executives must be configured.** At least one AE must be added in the Deal Task Generation settings.
+* **The feature must be enabled.** An admin must enable Deal Task Generation from the configuration modal.
+* **For manual generation**: AI context must exist for the deal. If it has not been generated yet (either automatically or manually), click "Generate Context" first.
+
+## Configuration
+
+### Opening the Configuration Modal
+
+Navigate to the Deal Task Generation settings (accessible from the Atlas configuration area). The modal has two tabs: **Configure** and **Activity**.
+
+### Configure Tab
+
+1. **Enable Task Generation** — Toggle this switch to turn automated task generation on or off. When disabled, no agents will run to generate tasks for your account executives. Existing tasks are not affected.
+2. **Account Executives** — Add the team members who should receive AI-generated tasks.
+   * Use the search field to find and add members.
+   * View selected members in the table below (showing name and email).
+   * Remove members using the action button on each row.
+3. **Preview** — After adding AEs, a preview section shows:
+   * **Total Deals** — Number of open deals matching the selected AEs.
+   * **Total Pipeline** — Aggregate pipeline value.
+   * A breakdown table showing deals and pipeline per AE.
+
+### Activity Tab
+
+Once task generation has run at least once, the Activity tab displays four metrics:
+
+| Metric                   | Description                                                       |
+| ------------------------ | ----------------------------------------------------------------- |
+| **Deal Coverage**        | Percentage of deals that have active tasks, with a progress bar.  |
+| **Active Tasks**         | Total count of pending or scheduled tasks across all deals.       |
+| **Acceptance Rate (7d)** | Percentage of tasks completed vs. dismissed over the last 7 days. |
+| **Last Context Sync**    | When the most recent context synchronization occurred.            |
+
+## How to Use
+
+### Generating Tasks Manually
+
+Manual generation is primarily used for testing your configuration. For production use, the overnight worker handles this automatically.
+
+1. Open a deal's detail page and navigate to the **Agent** tab.
+2. If AI context has not been generated yet, click **Generate Context** first and wait for it to complete. (For most deals, context is already generated automatically by the overnight worker.)
+3. Click **Generate Tasks**.
+4. A progress indicator will appear showing the current step (e.g., "Generating tasks…").
+5. Once complete, tasks appear in the deal's task list.
+
+### What Gets Generated
+
+Each task includes:
+
+* **Task type** — Email, phone call, LinkedIn message, LinkedIn connection request, SMS, or generic.
+* **Assignee** — Typically the deal's AE, but may also be other internal stakeholders (SE, CSM, executives) when their involvement is likely to improve the deal outcome.
+* **Priority** — Urgent, high, medium, or low.
+* **Due date** — A recommended date for completing the task, or none if timing is flexible.
+* **Pre-drafted content** — Email drafts, talking points, or call scripts personalized to the rep's writing style.
+
+### Refreshing Tasks
+
+When you trigger task generation on a deal that already has active tasks:
+
+1. The AI reviews existing tasks and decides whether each should be **kept** (still relevant) or **cancelled** (outdated).
+2. New tasks are generated to complement the remaining active tasks.
+
+### Overnight Background Generation
+
+The background worker runs daily overnight and handles both context generation and task generation automatically for all qualifying deals. It:
+
+* **Generates context** for deals that don't have it yet — you do not need to manually click "Generate Context" for every deal.
+* **Refreshes context** when new data has been synced (new calls, emails, or meetings).
+* **Generates new tasks** for deals that qualify.
+* **Reviews existing tasks** and cancels outdated ones before generating replacements.
+* **Factors in staleness** — When there has been no activity on a deal for 3 or more days, the AI adjusts its recommendations accordingly.
+
+### Cancelling In-Progress Generation
+
+If task generation is running, you can click the **Cancel** button on the toolbar to stop the process.
+
+## Constraints
+
+* A maximum of **5 tasks** are generated when no active tasks exist for the deal.
+* A maximum of **2 additional tasks** are generated when active tasks already exist.
+* Tasks are deduplicated per assignee — the AI checks against existing tasks to avoid creating duplicates.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Do I need to manually generate context for every deal?">
+  No. The overnight background worker generates context automatically for qualifying deals. Manual context generation is primarily useful when testing your configuration or when you want to interact with a deal's agent immediately without waiting for the next overnight run.
+</Accordion>
+
+<Accordion title="Why is the "Generate Tasks" button disabled?">
+  AI context must exist for the deal first. It may not have been generated yet by the overnight worker. Click "Generate Context" and wait for it to complete.
+</Accordion>
+
+<Accordion title="Will disabling task generation delete my existing tasks?">
+  No. Disabling the feature only stops new tasks from being generated. Existing tasks remain unchanged.
+</Accordion>
+
+<Accordion title="How are tasks assigned?">
+  Tasks are primarily assigned to the deal's account executive. However, the AI may also assign tasks to other internal stakeholders — such as sales engineers, CSMs, or executives — when it determines their involvement could positively impact the deal outcome based on patterns observed in your data.
+</Accordion>
+
+<Accordion title="Can I edit generated tasks?">
+  Yes. Generated tasks can be edited, completed, or dismissed like any other task.
+</Accordion>
+
+<Accordion title="What happens if I regenerate context after tasks already exist?">
+  Existing tasks are reviewed during the next task generation. The AI will keep tasks that are still relevant and cancel outdated ones before generating new recommendations.
+</Accordion>
+
+<Accordion title="How does the AI personalize email drafts?">
+  The system analyzes the rep's previous email communications to build a writing style profile, then uses this profile when composing draft content.
+</Accordion>
+
+<Accordion title="Why are only 2 new tasks generated instead of 5?">
+  When active tasks already exist for the deal, the system limits new task generation to 2 to avoid overwhelming the rep with too many concurrent action items.
+</Accordion>
+
+<Accordion title="When does the overnight worker run?">
+  The background worker runs daily overnight. It processes all qualifying deals — generating context where needed, refreshing stale context, and generating or refreshing tasks. You do not need to trigger this manually.
+</Accordion>
+</AccordionGroup>

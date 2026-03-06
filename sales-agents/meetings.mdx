@@ -1,0 +1,119 @@
+---
+title: "Meetings"
+description: "The Meetings page shows your daily calendar view of sales meetings, sourced from your CRM. It provides AI-powered meeting prep and follow-up capabilities to ..."
+---
+
+<Note>
+  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
+</Note>
+
+## Overview
+
+The Meetings page shows your daily calendar view of sales meetings, sourced from your CRM. It provides AI-powered meeting prep and follow-up capabilities to help you prepare for upcoming calls and act on completed ones.
+
+## What You See
+
+### Daily Timeline
+
+The main view is a vertical timeline organized by hour, showing all meetings for the selected day.
+
+* **Hour grid** — 24-hour timeline with hour labels on the left.
+* **Current time indicator** — A red dot marking the current time (visible when viewing today).
+* **Auto-scroll** — The view automatically scrolls to position the current time near the top.
+
+### Meeting Cards
+
+Each meeting appears as a card on the timeline, sized proportionally to its duration. Cards show:
+
+* **Company logo** (or initials if no logo is available)
+* **Company name** — The primary account associated with the meeting
+* **Meeting subject** — The calendar event title
+* **Attendees** — Avatar icons for participants (up to 3 shown, with a "+N" badge for additional attendees)
+* **Status badge** — Color-coded by meeting state
+
+### Meeting Statuses
+
+| Status        | Color | Meaning                     |
+| ------------- | ----- | --------------------------- |
+| **Upcoming**  | Blue  | Meeting has not started yet |
+| **Complete**  | Green | Meeting occurred            |
+| **No-show**   | Red   | Meeting was a no-show       |
+| **Cancelled** | Gray  | Meeting was cancelled       |
+
+### Date Navigation
+
+* **Today button** — Jump back to today's meetings.
+* **Previous / Next arrows** — Navigate one day forward or backward.
+* **Date display** — Shows the currently selected date in the center of the toolbar.
+
+## Meeting Prep
+
+For upcoming meetings, the AI can generate a preparation brief.
+
+### How to Use
+
+1. Find an upcoming meeting on the timeline.
+2. Click the **Prep** button on the meeting card.
+3. The AI generates a brief covering key context about the account, attendees, and recent activity.
+4. A modal opens showing the preparation steps and final brief.
+5. Once complete, the button changes to **See Brief** (green), and you can review it at any time.
+
+### Refreshing a Prep
+
+If new information becomes available before the meeting, you can re-run the prep to get an updated brief.
+
+## Meeting Follow-Up
+
+For completed or no-show meetings, the AI can generate follow-up actions.
+
+### How to Use
+
+1. Find a completed meeting on the timeline.
+2. Click the **Follow Up** button on the meeting card.
+3. The AI generates recommended follow-up actions and notes.
+4. A modal opens showing the execution steps and results.
+5. Once complete, the button changes to **See Follow-Up** so you can review it later.
+
+## Data Sources
+
+Meeting data comes from your connected CRM:
+
+* **Salesforce** — Calendar events with associated accounts and opportunities.
+* **HubSpot** — Meeting activities with linked companies and deals.
+* **Gong** — When Gong recordings are linked to calendar events, participant email data is enriched automatically.
+
+## Constraints
+
+* The Meetings page displays **one day at a time**. Use the navigation arrows to browse different days.
+* Meeting data depends on your CRM integration. Only events synced from your CRM appear.
+* A maximum of **10 preps** and **10 follow-ups** can be in progress simultaneously.
+* Prep and follow-up generation can be cancelled while in progress.
+* Meeting properties (subject, time, attendees) are read-only — edit them in your CRM.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why don't I see any meetings?">
+  Meetings are sourced from your CRM. Ensure your Salesforce or HubSpot integration is connected and that calendar events are syncing.
+</Accordion>
+
+<Accordion title="Can I prep for meetings on future days?">
+  Yes. Navigate to a future day using the arrows and click Prep on any upcoming meeting.
+</Accordion>
+
+<Accordion title="What if a meeting has no associated company?">
+  The meeting card will display attendee initials instead of a company logo. The prep and follow-up features still work, though with less account context.
+</Accordion>
+
+<Accordion title="How long does prep generation take?">
+  Typically a few minutes. The modal shows real-time progress as the AI gathers and synthesizes information.
+</Accordion>
+
+<Accordion title="Can I view a previous prep or follow-up?">
+  Yes. Once generated, the button changes to "See Brief" or "See Follow-Up" — click it at any time to review the content.
+</Accordion>
+
+<Accordion title="Does Gong call recording data appear here?">
+  Gong participant data is used to enrich attendee information. Full call recordings and transcripts are not directly accessible on this page.
+</Accordion>
+</AccordionGroup>
