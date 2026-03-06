@@ -67,7 +67,21 @@ AI properties you create here become available in the prospecting configuration'
 
 For full details, see [AI Properties](/sales-agents/ai-properties).
 
-## Step 7: Configure Stakeholder Discovery (Optional)
+## Step 7: Set Up Scoring (Optional but Recommended)
+
+Navigate to the **Atlas** page and open the **Scoring** section to create Delphi scores. Scores rank your accounts by conversion likelihood using a machine learning model trained on your engagement data.
+
+1. Click **Add Score** and follow the creation wizard.
+2. Choose a **conversion goal** (e.g., "Deal Created", "Closed Won") — the model predicts how likely each company is to reach this goal.
+3. Select **target sales views** — the model trains on and scores companies in these views.
+4. Configure **touchpoint properties** (up to 3 engagement signals) and **breakdowns** (up to 3 segmentation dimensions).
+5. Optionally set up **CRM sync** to write scores back to Salesforce or HubSpot fields.
+
+Scores appear on company pages as temperature indicators (Cold, Warm, Hot, On Fire) and feed into the Signals tab.
+
+For full details, see [Scoring](/sales-agents/scoring).
+
+## Step 8: Configure Stakeholder Discovery (Optional)
 
 Navigate to **Settings \> Account Intelligence** and open the **Stakeholder Mapping** section. Here you can enable automatic stakeholder discovery per sales view, so the system finds and enriches contacts across your target accounts.
 
@@ -77,7 +91,7 @@ Navigate to **Settings \> Account Intelligence** and open the **Stakeholder Mapp
 
 For full details, see [Stakeholder Discovery](/sales-agents/stakeholder-discovery).
 
-## Step 8: Configure Deal Task Generation
+## Step 9: Configure Deal Task Generation
 
 Navigate to the **Atlas** page and open the **Deal Task Generation** card. This modal has two tabs: **Configure** and **Activity**.
 
@@ -108,7 +122,7 @@ You can trigger an on-demand context sync by clicking **Sync Context**. A progre
 
 See [Deal Task Generation](/sales-agents/deal-task-generation) for full details on how deal tasks work.
 
-## Step 9: Configure Prospecting Task Generation
+## Step 10: Configure Prospecting Task Generation
 
 Navigate to the **Atlas** page and open the **Prospecting Task Generation** card. This modal has three tabs: **Motions**, **Task Limits**, and **Signals**.
 
