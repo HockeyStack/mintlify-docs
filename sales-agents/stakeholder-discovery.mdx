@@ -3,9 +3,7 @@ title: "Stakeholder Discovery"
 description: "Stakeholder Discovery automatically identifies and maps key contacts at your target accounts based on your configured personas. You can enable discovery per ..."
 ---
 
-<Note>
-  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
-</Note>
+<Snippet file="early-access.mdx" />
 
 ## Overview
 
@@ -71,13 +69,23 @@ Use preview to iterate on persona definitions. If the results are too broad or m
 ## FAQ
 
 <AccordionGroup>
-**How often does discovery run?** The overnight background worker processes all enabled views daily. New companies added to an enabled view are picked up on the next cycle.
+<Accordion title={"How often does discovery run?"}>
+  The overnight background worker processes all enabled views daily. New companies added to an enabled view are picked up on the next cycle.
+</Accordion>
 
-**What happens when I add a new persona?** New personas take effect on the next discovery cycle. Companies in enabled views are re-evaluated, and contacts matching the new persona are added. Existing contacts are not removed.
+<Accordion title={"What happens when I add a new persona?"}>
+  New personas take effect on the next discovery cycle. Companies in enabled views are re-evaluated, and contacts matching the new persona are added. Existing contacts are not removed.
+</Accordion>
 
-**Can I remove a discovered stakeholder?** Stakeholders are managed by the system based on persona matches. To stop discovering certain types of contacts, adjust your persona definitions (narrow the department, seniority, or add exclude keywords).
+<Accordion title={"Can I remove a discovered stakeholder?"}>
+  Stakeholders are managed by the system based on persona matches. To stop discovering certain types of contacts, adjust your persona definitions (narrow the department, seniority, or add exclude keywords).
+</Accordion>
 
-**Why does preview show different results than the People tab?** Preview runs discovery fresh with current persona definitions. The People tab shows historical results that may include contacts discovered under previous persona versions. Re-generate from the People tab to refresh.
+<Accordion title={"Why does preview show different results than the People tab?"}>
+  Preview runs discovery fresh with current persona definitions. The People tab shows historical results that may include contacts discovered under previous persona versions. Re-generate from the People tab to refresh.
+</Accordion>
 
-**Does disabling a view delete discovered stakeholders?** No. Disabling a view stops future discovery runs but preserves all existing stakeholder data.
+<Accordion title={"Does disabling a view delete discovered stakeholders?"}>
+  No. Disabling a view stops future discovery runs but preserves all existing stakeholder data.
+</Accordion>
 </AccordionGroup>

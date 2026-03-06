@@ -60,6 +60,14 @@
               "sales-agents/meetings",
               "sales-agents/team"
             ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "sales-agents/guides/test-and-iterate",
+              "sales-agents/guides/write-effective-prompts",
+              "sales-agents/guides/write-effective-ai-properties"
+            ]
           }
         ]
       }

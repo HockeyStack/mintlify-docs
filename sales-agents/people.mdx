@@ -3,9 +3,7 @@ title: "People"
 description: "The People tab on a company's detail page shows all contacts discovered and tracked at that account. You can filter by department, seniority, persona match, ..."
 ---
 
-<Note>
-  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
-</Note>
+<Snippet file="early-access.mdx" />
 
 ## Overview
 
@@ -113,13 +111,23 @@ Discovery results persist. Re-running discovery adds new contacts without removi
 ## FAQ
 
 <AccordionGroup>
-**Why are some contacts marked as "Left"?** The system periodically checks employment status. When a contact's current employer no longer matches the company, they are flagged as having left. These contacts remain visible but are deprioritized for outreach.
+<Accordion title={"Why are some contacts marked as \"Left\"?"}>
+  The system periodically checks employment status. When a contact's current employer no longer matches the company, they are flagged as having left. These contacts remain visible but are deprioritized for outreach.
+</Accordion>
 
-**Why don't I see any people for a company?** Contact discovery runs when company context is generated — either manually from the Agent tab or automatically by the overnight worker. If context has not been generated yet, the People tab may be empty. Trigger context generation first.
+<Accordion title={"Why don't I see any people for a company?"}>
+  Contact discovery runs when company context is generated — either manually from the Agent tab or automatically by the overnight worker. If context has not been generated yet, the People tab may be empty. Trigger context generation first.
+</Accordion>
 
-**Can I manually add contacts?** Contacts are discovered automatically based on personas. To find specific types of contacts, create or refine a persona targeting the right department and seniority, then re-generate.
+<Accordion title={"Can I manually add contacts?"}>
+  Contacts are discovered automatically based on personas. To find specific types of contacts, create or refine a persona targeting the right department and seniority, then re-generate.
+</Accordion>
 
-**How often are contacts refreshed?** Contact data is refreshed when company context is regenerated. The overnight worker handles this automatically. You can also trigger a manual re-generation at any time.
+<Accordion title={"How often are contacts refreshed?"}>
+  Contact data is refreshed when company context is regenerated. The overnight worker handles this automatically. You can also trigger a manual re-generation at any time.
+</Accordion>
 
-**Why is a contact's email showing as "Enriching" for a long time?** Email enrichment depends on external providers and may take longer for some contacts. If a contact remains in "Enriching" status for more than 24 hours, the email may not be available through current enrichment sources.
+<Accordion title={"Why is a contact's email showing as \"Enriching\" for a long time?"}>
+  Email enrichment depends on external providers and may take longer for some contacts. If a contact remains in "Enriching" status for more than 24 hours, the email may not be available through current enrichment sources.
+</Accordion>
 </AccordionGroup>

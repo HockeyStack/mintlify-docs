@@ -1,0 +1,61 @@
+---
+title: "Test and iterate on task quality"
+description: "Generate tasks on a single account, review the output, and refine your configuration until the AI produces tasks your reps want to execute."
+---
+
+<Snippet file="early-access.mdx" />
+
+## What you will accomplish
+
+By the end of this guide, you will have tested your Sales Agents configuration on a real account and refined it until the generated tasks match your expectations — without waiting for the overnight background worker.
+
+## Prerequisites
+
+- At least one prospecting motion or deal task generation configured and saved. See [Getting started](/sales-agents/configuration).
+- A target company (for prospecting) or an open deal (for deal tasks) to test against.
+
+## Test prospecting tasks
+
+1. Navigate to a **company page** that matches one of your configured motions.
+2. Open the **Agent** tab.
+3. Click **Generate Context** and wait for it to complete. Context gathering takes a few seconds and pulls in CRM data, signals, and stakeholder information.
+4. Select a **motion** from the dropdown and click **Generate Tasks**.
+5. Open the **Tasks** tab to review the generated tasks.
+
+## Test deal tasks
+
+1. Navigate to a **deal page** for an open deal assigned to one of your configured AEs.
+2. Open the **Agent** tab.
+3. Click **Generate Context** and wait for it to complete.
+4. Click **Generate Tasks**.
+5. Open the **Tasks** tab to review the generated tasks.
+
+## What to check
+
+Review each generated task and ask:
+
+- **Task type** — Is email, phone, or LinkedIn the right channel for this contact and stage?
+- **Tone** — Does the messaging match your outreach strategy prompt?
+- **Targeting** — Is the AI reaching the right contacts at the right seniority?
+- **Content quality** — Are email drafts and messages well-written and personalized?
+- **Reasoning** — Does the agent's reasoning make sense for why this task was recommended?
+
+## Iterate
+
+If tasks don't match your expectations:
+
+1. Delete the generated tasks from the Tasks tab.
+2. Go back to the relevant configuration — adjust the outreach strategy prompt, personas, segments, or other settings.
+3. Save the updated configuration.
+4. Return to the same company or deal and repeat: generate context, then generate tasks.
+5. Continue until the output quality meets your standards.
+
+Common adjustments:
+- **Tasks are too generic** — Add more detail to your outreach strategy prompt. Include specific angles, objections to address, or value props to emphasize.
+- **Wrong contacts targeted** — Refine your persona definitions. Narrow the department, adjust job levels, or add include/exclude keywords.
+- **Wrong accounts targeted** — Review your account segment criteria. Tighten requirements or add nice-to-haves.
+- **Poor email quality** — The AI uses deal and company context to personalize. If context is thin, check that your CRM data and Gong integration are flowing correctly.
+
+## When to trust the overnight worker
+
+Once you are satisfied with task quality on 3–5 test accounts, the overnight background worker will produce similar results across all qualifying companies and deals automatically. You do not need to test every account manually.

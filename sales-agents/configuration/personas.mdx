@@ -141,15 +141,27 @@ When you create / edit a persona definition, to test it out, you can:
 ## FAQ
 
 <AccordionGroup>
-**How long before a new persona takes effect?** Immediately for manual task generation. For background processing, the next overnight sync picks up new personas and applies them to eligible accounts.
+<Accordion title={"How long before a new persona takes effect?"}>
+  Immediately for manual task generation. For background processing, the next overnight sync picks up new personas and applies them to eligible accounts.
+</Accordion>
 
-**Can I use the same persona across multiple motions?** Yes. A persona can be assigned to any number of prospecting motions. Each motion generates tasks independently based on its own outreach strategy.
+<Accordion title={"Can I use the same persona across multiple motions?"}>
+  Yes. A persona can be assigned to any number of prospecting motions. Each motion generates tasks independently based on its own outreach strategy.
+</Accordion>
 
-**What happens to existing tasks when I edit a persona?** Existing tasks are not affected. Updated persona criteria apply to future task generation cycles. The system creates a new version of the persona internally while preserving historical data.
+<Accordion title={"What happens to existing tasks when I edit a persona?"}>
+  Existing tasks are not affected. Updated persona criteria apply to future task generation cycles. The system creates a new version of the persona internally while preserving historical data.
+</Accordion>
 
-**Why aren't contacts being discovered for my persona?** Check that your persona criteria aren't too narrow. If you've specified a niche subdepartment, restrictive job levels, and multiple include keywords, the intersection may exclude valid contacts. Try broadening one dimension at a time.
+<Accordion title={"Why aren't contacts being discovered for my persona?"}>
+  Check that your persona criteria aren't too narrow. If you've specified a niche subdepartment, restrictive job levels, and multiple include keywords, the intersection may exclude valid contacts. Try broadening one dimension at a time.
+</Accordion>
 
-**Can I create personas during workflow configuration?** Yes. When setting up a Contact Discovery node in a workflow, you can create new personas inline without leaving the workflow builder.
+<Accordion title={"Can I create personas during workflow configuration?"}>
+  Yes. When setting up a Contact Discovery node in a workflow, you can create new personas inline without leaving the workflow builder.
+</Accordion>
 
-**How do keywords interact with department and job level filters?** Keywords are applied after department and job level. If **Include** is set, the job title must match at least one include keyword. This narrows results versus leaving Include blank. **Exclude** always removes matches, even if everything else matches.
+<Accordion title={"How do keywords interact with department and job level filters?"}>
+  Keywords are applied after department and job level. If **Include** is set, the job title must match at least one include keyword. This narrows results versus leaving Include blank. **Exclude** always removes matches, even if everything else matches.
+</Accordion>
 </AccordionGroup>

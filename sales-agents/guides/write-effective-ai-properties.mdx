@@ -1,0 +1,55 @@
+---
+title: "Write effective AI property instructions"
+description: "Create AI property instructions that produce accurate, discriminating research signals across your pipeline."
+---
+
+<Snippet file="early-access.mdx" />
+
+## What you will accomplish
+
+You will learn how to write AI property instructions that produce useful, accurate research signals — avoiding common pitfalls that lead to vague answers or signals that don't differentiate accounts.
+
+## Where instructions are used
+
+Each AI property has an **Instructions** field that tells the AI what to research and how to evaluate the answer. The AI uses these instructions when analyzing each company, searching the web for evidence, and producing a structured answer with citations.
+
+## Anatomy of good instructions
+
+Strong instructions answer three questions:
+
+1. **What to look for** — Specific data sources, pages, or indicators to check.
+2. **How to evaluate** — Clear criteria for what counts as a positive signal.
+3. **How to handle edge cases** — What to do when evidence is ambiguous.
+
+## Examples
+
+### Weak instructions
+> "Is this company a good fit?"
+
+The AI has no criteria to evaluate. Every answer will be vague.
+
+### Strong instructions (Yes/No property)
+> "Check the company's careers page, LinkedIn job postings, and recent press releases for evidence of hiring in data engineering, analytics engineering, or data platform roles. Answer Yes only if there are active job postings or recent hires (within 6 months) in these areas. Answer No if the only evidence is generic 'data analyst' roles without infrastructure focus. If the company is a consultancy or agency, answer No — we are looking for companies building internal data capabilities."
+
+### Strong instructions (Score property)
+> "Evaluate how mature this company's data stack is on a 0–10 scale. Look for: technology mentions on their engineering blog, job posting requirements, conference talks by their engineers, and integration partnerships. Score 8–10 if they run modern cloud-native data infrastructure (Snowflake, Databricks, dbt, Kafka). Score 5–7 if they use traditional enterprise tools (Oracle, Teradata) or are mid-migration. Score 0–4 if there is no evidence of significant data infrastructure investment."
+
+### Strong instructions (Enum property)
+> "Determine this company's primary cloud provider. Check their job postings (required skills/certifications), engineering blog, case studies, and technology partner pages. Classify as: AWS (Amazon Web Services, EC2, S3, Lambda references), GCP (Google Cloud, BigQuery, GKE references), Azure (Azure, Microsoft Cloud references), Multi-cloud (clear evidence of two or more), or Unknown (insufficient evidence). If a company uses AWS for infrastructure but BigQuery for analytics, classify as Multi-cloud."
+
+## Common mistakes
+
+- **Too broad** — "Is this a good company?" produces meaningless Yes answers for almost everyone. Ask about a specific, observable characteristic.
+- **No evaluation criteria** — "Does this company use AI?" without defining what counts. Does a chatbot on their website count? Only internal ML teams? Be explicit.
+- **Not discriminating** — If 90%+ of companies get the same answer, the property isn't useful for prioritization. Check the value distribution after a research run and tighten criteria if needed.
+- **Asking about non-public information** — The AI researches using public sources. Questions about internal budgets, contract sizes, or private metrics will produce unreliable answers.
+
+## Validate with distributions
+
+After running research across your pipeline, check the **value distribution** in the AI Agent Builder:
+
+- **Yes/No properties** — If over 80% answer the same way, the question is too broad or too narrow. Adjust criteria.
+- **Score properties** — Scores should spread across the range. If everything clusters at 5–7, your scale descriptions need clearer differentiation.
+- **Enum properties** — All enum values should have reasonable representation. If one value captures 90%+ of companies, consider splitting it.
+
+For the full research workflow, see [AI Properties](/sales-agents/ai-properties).

@@ -3,9 +3,7 @@ title: "AI Properties"
 description: "AI Properties are custom research signals that the AI evaluates for each company in your pipeline. You define the question — \"Has this company recently raise..."
 ---
 
-<Note>
-  Sales Agents is currently available to select customers only. To get access, reach out to bugra@hockeystack.com.
-</Note>
+<Snippet file="early-access.mdx" />
 
 ## Overview
 
@@ -138,15 +136,27 @@ Use distributions to validate that your property is producing useful signal. If 
 ## FAQ
 
 <AccordionGroup>
-**How long does research take per company?** A few seconds per company. For large sales views with hundreds of companies, a full research run may take several minutes.
+<Accordion title={"How long does research take per company?"}>
+  A few seconds per company. For large sales views with hundreds of companies, a full research run may take several minutes.
+</Accordion>
 
-**Can I edit a property after it has been researched?** Yes. Editing instructions or output type creates a new version of the property. Existing answers are preserved until the next research cycle refreshes them.
+<Accordion title={"Can I edit a property after it has been researched?"}>
+  Yes. Editing instructions or output type creates a new version of the property. Existing answers are preserved until the next research cycle refreshes them.
+</Accordion>
 
-**What happens if I change the output type?** Previous answers are kept as-is. New research produces answers in the updated format. The next auto research cycle or manual trigger re-evaluates all companies with the new output type.
+<Accordion title={"What happens if I change the output type?"}>
+  Previous answers are kept as-is. New research produces answers in the updated format. The next auto research cycle or manual trigger re-evaluates all companies with the new output type.
+</Accordion>
 
-**Why are some companies skipped during auto research?** Companies are skipped when their existing answer is still fresh according to the refresh policy. If you need to force a full re-evaluation, use the manual trigger with the resync option.
+<Accordion title={"Why are some companies skipped during auto research?"}>
+  Companies are skipped when their existing answer is still fresh according to the refresh policy. If you need to force a full re-evaluation, use the manual trigger with the resync option.
+</Accordion>
 
-**Can I use AI Properties without auto research?** Yes. Properties are researched individually when company context is generated (either manually or by the overnight worker). Auto research is optional — it pre-computes answers across your sales views so they are ready before anyone visits the company page.
+<Accordion title={"Can I use AI Properties without auto research?"}>
+  Yes. Properties are researched individually when company context is generated (either manually or by the overnight worker). Auto research is optional — it pre-computes answers across your sales views so they are ready before anyone visits the company page.
+</Accordion>
 
-**How do I know if my property instructions are good?** Check the value distribution after a research run. If answers cluster heavily on one value (e.g., 90%+ "Yes"), the question may be too broad. If descriptions are vague or citations are irrelevant, the instructions need more specificity.
+<Accordion title={"How do I know if my property instructions are good?"}>
+  Check the value distribution after a research run. If answers cluster heavily on one value (e.g., 90%+ "Yes"), the question may be too broad. If descriptions are vague or citations are irrelevant, the instructions need more specificity.
+</Accordion>
 </AccordionGroup>
