@@ -18,20 +18,55 @@ When stakeholder discovery runs for a company:
 3. Discovered contacts are enriched with email addresses and LinkedIn profiles.
 4. Results appear in the company's **People** tab (see [People](/sales-agents/people)).
 
-Discovery runs automatically as part of the overnight background worker. You can also trigger it manually.
+## Configure stakeholder mapping
 
-## Running discovery for a sales view
+Stakeholder mapping is configured from the **Personas** modal on the **Atlas** page.
 
-You can trigger stakeholder discovery for all companies in a specific sales view from the sales dashboard.
+1. Navigate to **Atlas** and open the **Personas** card.
+2. Select the **Stakeholder Mapping** tab at the top of the modal.
+3. Click **Add View** to select which sales views to run stakeholder discovery across.
+4. The system discovers contacts for all personas across all companies in the enabled views.
 
-1. Navigate to a **sales view** on the sales dashboard.
-2. Open the **configuration dropdown** for the view.
-3. Select **Generate Stakeholder Maps**.
-4. The system discovers contacts across all companies in the view based on your persona definitions.
+### Stakeholder mapping table
 
-This maps stakeholders in bulk — the system uses your existing journey data alongside new contact searches to build a comprehensive picture of each account's key people.
+Each enabled view displays a row with the following columns:
 
-## Running discovery for a single company
+| Column | Description |
+|--------|-------------|
+| **View** | The sales view name. |
+| **Companies** | Total number of companies in the view. |
+| **With Stakeholders** | Number of companies that have at least one discovered stakeholder. |
+| **Stakeholders** | Total discovered stakeholders across all companies in the view. |
+| **With Email** | Number of discovered stakeholders that have an email address. |
+
+### Run Now
+
+Each view row has a **Run Now** button that triggers stakeholder discovery on demand for all companies in that view. A progress indicator shows the number of companies processed out of the total. Use this after adding a new view or after updating persona definitions.
+
+### Automatic refresh
+
+Enabled views are automatically refreshed every 7 days. If you update a persona definition, discovery runs at the next overnight cycle for all enabled views.
+
+### Removing a view
+
+Click the trash icon on a view row to remove it from stakeholder mapping. Removing a view disables automatic discovery for companies in that view. Existing discovered stakeholders are not deleted.
+
+### View size limit
+
+Views with more than 15,000 accounts are not supported for stakeholder mapping. These views appear as disabled in the Add View dropdown and show a "Blocked" indicator if already added.
+
+## Test discovery for a single persona
+
+When editing a persona, the right panel of the edit modal shows a **Test Stakeholder Discovery** section. Use this to validate a persona definition against a single company before enabling it across views.
+
+1. Open a persona for editing from the **Personas** tab.
+2. In the right panel, enter a **Company Domain** (e.g., `acme.com`).
+3. Click **Run**.
+4. Discovered stakeholders appear below with name, title, and LinkedIn profile link.
+
+You must save any pending persona changes before running a test. The Run button is disabled while the persona has unsaved edits.
+
+## Test discovery from a company page
 
 To discover or refresh contacts at a specific company:
 
@@ -41,41 +76,45 @@ To discover or refresh contacts at a specific company:
 4. Select which persona to discover contacts for.
 5. New contacts appear as they are discovered and enriched.
 
-A progress indicator shows discovery status. Use this to test persona definitions on individual companies before running discovery across a full view.
+A progress indicator shows discovery status.
 
 ## Best practices
 
-* **Start narrow, then expand.** Run discovery on a single company first using the People tab. Review the results to verify your personas produce the right contacts before running across a full view.
+* **Start narrow, then expand.** Test discovery on a single company using the persona edit panel. Review the results to verify your personas produce the right contacts before enabling views.
 * **Check email coverage.** If many discovered contacts show "Enriching" or "No email" status, your personas may be targeting roles that are harder to find email addresses for.
-* **Revisit after persona changes.** When you edit personas, re-generate on a few companies to verify the changes produce better results before the next discovery cycle processes your full pipeline.
+* **Revisit after persona changes.** When you edit personas, test on a few companies to verify the changes produce better results before the next automatic refresh processes your full pipeline.
 
 ## Constraints
 
 * Stakeholder discovery depends on persona quality. If no personas are configured, no stakeholders are discovered.
 * Discovery results depend on available public data. Some contacts may not be found if they have limited online presence.
-* Running discovery across a large sales view triggers processing for many companies. The first full run may take time to complete.
+* Views with more than 15,000 accounts cannot be used for stakeholder mapping.
 * Discovered stakeholders are preserved — re-running discovery adds new contacts without removing existing ones (unless they are flagged as having left).
 
 ## FAQ
 
 <AccordionGroup>
 <Accordion title={"How often does discovery run automatically?"}>
-  The overnight background worker processes companies daily. You can also trigger discovery manually per company (from the People tab) or per view (from the sales dashboard configuration dropdown).
+  Enabled views are refreshed every 7 days. If you update a persona, discovery runs at the next overnight cycle. You can also trigger discovery manually using the Run Now button on any enabled view.
 </Accordion>
 
 <Accordion title={"What happens when I add a new persona?"}>
-  New personas take effect on the next discovery cycle. Companies are re-evaluated, and contacts matching the new persona are added. Existing contacts are not removed.
+  New personas take effect on the next discovery cycle. Companies in enabled views are re-evaluated, and contacts matching the new persona are added. Existing contacts are not removed.
 </Accordion>
 
 <Accordion title={"Can I remove a discovered stakeholder?"}>
   Stakeholders are managed by the system based on persona matches. To stop discovering certain types of contacts, adjust your persona definitions (narrow the department, seniority, or add exclude keywords).
 </Accordion>
 
-<Accordion title={"What is the difference between generating from the People tab vs. the sales view?"}>
-  The People tab re-generates contacts for a single company. The sales view option runs discovery across all companies in that view. Use the People tab for testing and iteration, and the sales view option for bulk discovery.
+<Accordion title={"What is the difference between testing from the persona edit panel vs. the People tab?"}>
+  The persona edit panel tests a single persona against a single company domain — use it to validate persona definitions. The People tab re-generates all personas for a specific company. Use the People tab for a full stakeholder view of one account.
 </Accordion>
 
-<Accordion title={"Does re-generating remove existing contacts?"}>
-  No. Re-generating adds new contacts and updates existing ones. Contacts who have left the company are flagged but not removed.
+<Accordion title={"Does re-running discovery remove existing contacts?"}>
+  No. Discovery adds new contacts and updates existing ones. Contacts who have left the company are flagged but not removed.
+</Accordion>
+
+<Accordion title={"What happens when I remove a view from stakeholder mapping?"}>
+  Automatic discovery stops for companies in that view. Existing discovered stakeholders are not deleted.
 </Accordion>
 </AccordionGroup>
