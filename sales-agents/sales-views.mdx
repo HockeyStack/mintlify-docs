@@ -1,0 +1,138 @@
+---
+title: "Sales Views"
+description: "Sales views are filtered, saved lists of companies that power many features across Sales Agents — from scoring and stakeholder discovery to AI research and CRM sync."
+---
+
+<Snippet file="early-access.mdx" />
+
+## Overview
+
+A sales view is a saved set of filters that defines a list of companies. Views are the foundation for many Sales Agents features: scoring uses views as its target audience, stakeholder discovery runs across views, and AI property auto research targets companies in views.
+
+## Default views
+
+Two default views are available in every workspace:
+
+- **My Companies** — Filtered to companies you own.
+- **My People** — Filtered to contacts you own.
+
+Default views cannot be renamed, deleted, or have their configuration modified.
+
+## Create a view
+
+1. Open the **view selector** dropdown in the toolbar.
+2. Click **Create new view**.
+3. Enter a name for the view.
+4. The view is created with no filters. Add filters to define which companies appear.
+
+## Filters
+
+Use the filter bar above the table to narrow which companies appear in the view. Filter types include:
+
+- **Owner** — Filter by the assigned sales rep.
+- **Company properties** — Name, domain, industry, employee count, country, annual revenue, and other firmographic attributes.
+- **Enriched company data** — Data from enrichment providers.
+- **Deal properties** — Filter by deal attributes (stage, amount, close date, etc.).
+- **AI properties** — Filter by AI-researched property values.
+
+Active filters appear as chips in the filter bar. When your filters differ from the saved view, two options appear:
+
+- **Discard changes** — Revert to the saved filters.
+- **Save for everyone** — Update the view's filters for all users. A split button also offers **Save as new view** to create a copy instead.
+
+## Table columns
+
+The sales dashboard displays companies in a table with these columns:
+
+| Column | Description |
+|--------|-------------|
+| **Company** | Company name, domain, and logo. Always visible. |
+| **Stage** | Current lifecycle stage. Toggleable. |
+| **Score** | Account intelligence score. Toggleable. |
+| **30 Days Activity** | Touchpoint activity timeline. Toggleable. |
+| **Delphi Scores** | Custom scoring model columns (when configured). Toggleable. |
+
+Toggle column visibility using the **Columns** button in the toolbar.
+
+## Sorting and pagination
+
+Click any column header to sort. The table supports multi-column sorting. Results are paginated — use the navigation controls at the bottom to move between pages.
+
+## Managing views
+
+From the view selector dropdown, hover over any custom view to access actions:
+
+- **Rename** — Change the view's name.
+- **Duplicate** — Create a copy of the view with all its filters and settings.
+- **Delete** — Permanently remove the view.
+
+## View configuration
+
+Click the **gear icon** next to the view selector to open the configuration dropdown. This is where you enable features that run across the entire view.
+
+### Stakeholder discovery
+
+Enable **Generate Stakeholder Maps** to discover contacts matching your personas across all companies in the view. The system uses your persona definitions and existing journey data to find and enrich key contacts. See [Stakeholder Discovery](/sales-agents/stakeholder-discovery).
+
+### Rescoring
+
+**Rescore all accounts** triggers a full rescore of every company in the view. Available to admin users. See [Scoring](/sales-agents/scoring).
+
+### CRM sync
+
+**Sync to CRM** pushes view data to your connected CRM. Configure destinations (Salesforce or HubSpot, production or sandbox) with options for:
+
+- **Upsert mode** — Create new records or update existing ones.
+- **Sync merged companies** — Include merged company records.
+- **Status tracking** — View last sync date, status (success, partial, or error), and error summaries.
+
+## Where views are used
+
+Views are referenced across many features in Sales Agents:
+
+| Feature | How views are used |
+|---------|-------------------|
+| **Scoring** | Target audience — the model trains on and scores companies in selected views |
+| **Stakeholder Discovery** | Discover contacts across all companies in the view |
+| **AI Property auto research** | Evaluate properties for companies in selected views |
+| **CRM sync** | Push scored and enriched data back to your CRM |
+| **Daily workflow** | Reps use filtered views to focus on their accounts |
+
+## Toolbar
+
+The view toolbar provides:
+
+- **View selector** — Switch between views or create new ones.
+- **Configuration dropdown** (gear icon) — Manage view-level features.
+- **Search** — Find companies within the current view.
+- **Refresh** — Reload view data.
+- **Download CSV** — Export the current view as a CSV file.
+- **Columns** — Toggle column visibility.
+
+## Constraints
+
+- Default views ("My Companies", "My People") cannot be modified or deleted.
+- View configuration (gear icon) is only available for custom views with write access.
+- Rescoring and account plan generation require admin access.
+- CRM sync requires an active CRM integration (Salesforce or HubSpot).
+- Stakeholder discovery requires at least one persona to be configured.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title={"Can I share a view with my team?"}>
+  Views are workspace-wide. When you save a view, it is visible to all team members. Use "Save for everyone" to update filters for all users, or "Save as new view" to create a personal variant.
+</Accordion>
+
+<Accordion title={"What happens if I change filters on a view that scoring targets?"}>
+  A warning appears when saving filter changes to a view used by Delphi scores. Changing filters affects which companies the model scores going forward.
+</Accordion>
+
+<Accordion title={"How do I export my view data?"}>
+  Click the **Download CSV** button in the toolbar to export all companies in the current view as a CSV file.
+</Accordion>
+
+<Accordion title={"Can I have different views for different team members?"}>
+  All custom views are shared across the workspace. Use the "My Companies" default view for a personal filtered list, or create views with owner filters to segment by rep.
+</Accordion>
+</AccordionGroup>
