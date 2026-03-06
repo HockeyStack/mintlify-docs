@@ -1,0 +1,132 @@
+---
+title: "Scoring"
+description: "Create predictive scores that rank accounts by conversion likelihood. Delphi scores use machine learning to analyze engagement patterns and surface your highest-priority accounts."
+---
+
+<Snippet file="early-access.mdx" />
+
+## Overview
+
+Delphi scoring assigns a 0–100 score to each company based on how likely it is to convert. Scores are computed by a machine learning model that analyzes engagement signals across your pipeline — page visits, content downloads, email opens, event attendance, and more.
+
+Scores appear on company pages, feed into the Signals tab, and can sync back to your CRM automatically.
+
+## Score types
+
+| Type | What it measures | Status |
+|------|-----------------|--------|
+| **Behavior** | Engagement signals — how actively a company interacts with your content and touchpoints | Available |
+| **Fit** | Firmographic and technographic match against your ICP | Coming soon |
+
+## Score levels
+
+Scores map to temperature buckets for quick visual scanning:
+
+| Level | Range | Color | Meaning |
+|-------|-------|-------|---------|
+| **No Score** | 0 | Gray | No engagement data yet |
+| **Cold** | 1–29 | Blue | Low engagement |
+| **Warm** | 30–59 | Amber | Moderate engagement |
+| **Hot** | 60–84 | Orange | High engagement |
+| **On Fire** | 85–100 | Red | Extremely engaged |
+
+## Create a score
+
+Navigate to the **Atlas** page and open the **Scoring** section.
+
+1. Click **Add Score**.
+2. **Name** — Choose a descriptive name (e.g., "ICP Fit - Enterprise", "Product Engagement Score").
+3. **Score type** — Select **Behavior** (tracks engagement signals) or **Fit** (evaluates ICP match).
+4. **Entity type** — Select **Company** (scores at the account level).
+5. **Conversion goal** — Pick the goal the model optimizes for (e.g., "Deal Created", "Closed Won"). The score predicts how likely each company is to reach this goal.
+6. **Target audience** — Select one or more **sales views**. The model trains on and scores companies in these views.
+7. **Behavior configuration** (for Behavior scores):
+   - **Touchpoint properties** — Select up to 3 engagement properties to include as signals (e.g., page visits, content downloads, form submissions).
+   - **Score breakdowns** — Select up to 3 dimensions to segment scores by (e.g., Industry, Geo Region, Company Size).
+   - **Enable Blueprint** — Toggle on to use this score configuration for Blueprints.
+8. **CRM sync** (optional) — Enter field names to sync scores back to your CRM:
+   - **Salesforce**: Field name must end with `__c` (e.g., `Engagement_Score__c`).
+   - **HubSpot**: Property name must be lowercase with underscores only (e.g., `engagement_score`).
+9. Click **Create Score**.
+
+After creation, the ML pipeline runs automatically. The score card shows a yellow pulsing indicator while processing, then turns green when complete.
+
+## Edit a score
+
+Click the edit icon on any score card to modify it. You can change the name, conversion goal, target audience, behavior configuration, and CRM sync fields. Score type and entity type cannot be changed after creation.
+
+After saving changes, a dialog offers to rescore specific views immediately. Select the views you want to refresh or skip to let the next scheduled run pick up the changes.
+
+## Delete a score
+
+Click the delete icon on a score card. A confirmation dialog appears — deletion is permanent and cannot be undone.
+
+## How scores appear on company pages
+
+### Score cards
+
+The company overview page shows a horizontally scrollable row of score cards. Each card displays:
+
+- **Score name**
+- **Current score** (0–100)
+- **Score change** — Direction arrow with the change amount (green for increases, red for decreases)
+- **Converted badge** — A green "Converted" badge appears when the company has reached the score's conversion goal. Converted scores are frozen and no longer rescored.
+
+Click any score card to select it and view its history chart.
+
+### History chart
+
+The chart below the score cards shows the score trend over time. Use the time range dropdown to view the last 7, 14, 30, 60, or 90 days.
+
+### Score reasoning
+
+Below the chart, an AI-generated reasoning section explains why the score is at its current level — which signals contributed positively and which held it back.
+
+## Conversion tracking
+
+Each score tracks progress toward its configured conversion goal. When a company reaches the goal:
+
+- A green **Converted** badge appears on the score card.
+- The score freezes at its current value and is no longer rescored.
+- The conversion goal name is displayed in the score tooltip.
+
+## Constraints
+
+- Behavior scores are available now. Fit scores are coming soon.
+- Company-level scoring is available now. Person-level scoring is coming soon.
+- Each score can include up to 3 touchpoint properties and 3 breakdown dimensions.
+- Salesforce sync field names must match the pattern `FieldName__c`.
+- HubSpot sync property names must be lowercase with underscores only.
+- The ML pipeline runs after score creation or configuration changes. Processing time depends on the number of companies in the target views.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title={"How long does scoring take after I create a new score?"}>
+  The ML pipeline starts automatically after creation. Processing time depends on the size of your target views — typically a few minutes for small views, longer for views with thousands of companies.
+</Accordion>
+
+<Accordion title={"Can I have multiple scores?"}>
+  Yes. You can create multiple scores with different configurations — for example, one targeting enterprise accounts and another targeting mid-market, or scores optimized for different conversion goals.
+</Accordion>
+
+<Accordion title={"What does the conversion goal do?"}>
+  The conversion goal tells the model what outcome to optimize for. If you set "Deal Created" as the goal, the model learns which engagement patterns predict deal creation and scores companies accordingly. Choose the goal that represents the conversion event you care most about.
+</Accordion>
+
+<Accordion title={"Why is my score stuck in 'Running' status?"}>
+  The ML pipeline may take time to complete, especially for large target views. If the status does not change to "Completed" after several minutes, check that your target views contain enough companies with activity data for the model to train on.
+</Accordion>
+
+<Accordion title={"What happens if I change the conversion goal on an existing score?"}>
+  The model retrains with the new goal. Existing scores are preserved until the next scoring run produces updated values. Trigger a rescore from the edit dialog to refresh immediately.
+</Accordion>
+
+<Accordion title={"How do CRM sync fields work?"}>
+  When configured, the score value is written back to the specified field on each company's CRM record after every scoring run. For Salesforce, create a custom number field first (the name must end with __c). For HubSpot, create a custom property in your HubSpot settings.
+</Accordion>
+
+<Accordion title={"Why does a score show 'Converted'?"}>
+  The company reached the conversion goal configured for that score. Once converted, the score freezes and is no longer updated — it serves as a historical record of the score at the time of conversion.
+</Accordion>
+</AccordionGroup>
