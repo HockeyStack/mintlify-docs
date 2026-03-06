@@ -27,6 +27,7 @@
             "group": "Configuration",
             "pages": [
               "sales-agents/configuration",
+              "sales-agents/configuration/users-and-roles",
               "sales-agents/sales-views",
               "sales-agents/configuration/personas",
               "sales-agents/account-segments",

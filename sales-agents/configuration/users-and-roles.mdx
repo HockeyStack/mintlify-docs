@@ -1,0 +1,119 @@
+---
+title: "Users and Roles"
+description: "Manage team members, access levels, custom user roles, and reporting hierarchies in your workspace."
+---
+
+<Snippet file="early-access.mdx" />
+
+## Overview
+
+Users and roles are configured in **Workspace Settings > Team**. This is where you invite team members, assign access levels, create custom user roles with daily task caps, and set up the reporting hierarchy that powers the Team page.
+
+Only **Admin** users can access workspace settings and manage team configuration.
+
+## Access levels
+
+Every user in your workspace has one of four access levels.
+
+| Access Level | Description |
+|-------------|-------------|
+| **Creator** | The workspace creator. Has full admin permissions and cannot be removed. |
+| **Admin** | Full access to workspace settings, team management, and all configuration. Can invite and remove members, create roles, and manage the reporting hierarchy. |
+| **Member** | Standard access. Can use the dashboard, execute tasks, and interact with deals and companies. Cannot access workspace settings or manage other users. |
+| **Viewer** | Read-only access. Can view dashboards and data but cannot make changes. |
+
+## Inviting team members
+
+1. Navigate to **Workspace Settings > Team**.
+2. Click **Invite Member**.
+3. Enter the user's email address.
+4. Select an **access level** (Admin, Member, or Viewer).
+5. Choose which **products** to grant access to (Marketing, Sales, or both).
+6. Click **Invite**.
+
+The invited user receives an email and appears in the team list with an "Invited" status until they accept.
+
+## User roles
+
+User roles are separate from access levels. They define categories within your sales team and control daily task generation caps for prospecting.
+
+### Creating roles
+
+1. In **Workspace Settings > Team**, open the **User Roles** section.
+2. Click **Add Role**.
+3. Enter a **name** (e.g., "AE", "SDR", "Manager").
+4. Set the **daily cap** — the maximum number of prospecting tasks the AI generates per day for members in this role. The default is **10**.
+5. Save.
+
+### Assigning roles to members
+
+Each team member can be assigned one user role. Assign roles by editing a team member and selecting their role.
+
+Only members with an assigned user role can be added to prospecting motions. If no roles are configured, you cannot assign users to motions in the prospecting configuration.
+
+## Reporting hierarchy
+
+The reporting hierarchy defines who reports to whom. It powers the [Team page](/sales-agents/team), where managers see their direct reports' task metrics.
+
+### Setting up hierarchy
+
+1. Edit a team member in **Workspace Settings > Team**.
+2. Set the **Reports To** field to their manager.
+3. Repeat for all team members.
+
+You can also use **bulk edit** to set the manager for multiple members at once.
+
+The system prevents circular relationships — a member cannot report to someone who already reports to them (directly or indirectly).
+
+### How hierarchy affects the product
+
+| Feature | How hierarchy applies |
+|---------|----------------------|
+| **Team page** | Only visible to users with direct reports. Shows task metrics for your team with drill-down into sub-teams. |
+| **Task visibility** | Managers can view tasks belonging to their direct reports. |
+
+## Editing team members
+
+Edit a team member to change any of the following:
+
+- **Access level** — Promote or demote between Admin, Member, and Viewer.
+- **User role** — Assign or change their custom role (affects daily task cap).
+- **Reports to** — Set or change their manager in the reporting hierarchy.
+- **First name / Last name / Job title** — Update profile details.
+
+## Removing team members
+
+Admins can remove team members from the workspace. The workspace creator cannot be removed.
+
+## Where users and roles are referenced
+
+| Feature | How it's used |
+|---------|--------------|
+| **Prospecting motions** | Only members with assigned user roles can be added to motions. |
+| **Task Limits** | Daily caps are configured per user role in the prospecting configuration. |
+| **Deal task generation** | Account executives are selected from the team member list. |
+| **Team page** | Reporting hierarchy determines what managers see. |
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title={"What is the difference between access levels and user roles?"}>
+  Access levels (Admin, Member, Viewer) control what a user can see and do in the platform. User roles (AE, SDR, etc.) are custom categories you create that control daily task generation caps and determine who can be assigned to prospecting motions.
+</Accordion>
+
+<Accordion title={"Can a Viewer be assigned to a prospecting motion?"}>
+  Technically, any team member with a user role can be assigned to a motion. However, Viewers have read-only access and cannot act on tasks, so assigning them to motions is not recommended.
+</Accordion>
+
+<Accordion title={"What happens if I don't set up a reporting hierarchy?"}>
+  The Team page will not appear for anyone since no one has direct reports. Task generation and prospecting still work — hierarchy only affects the Team page visibility and manager drill-down.
+</Accordion>
+
+<Accordion title={"Can I change the daily cap for a role after creating it?"}>
+  Yes. Edit the role in User Roles or adjust it in the Task Limits tab of the prospecting configuration. Changes apply to the next task generation cycle.
+</Accordion>
+
+<Accordion title={"Is there a limit on team members?"}>
+  Your workspace has a team member limit based on your plan. The current limit is shown in workspace settings.
+</Accordion>
+</AccordionGroup>
