@@ -73,13 +73,13 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:bugra@hockeystack.com"
+        "href": "mailto:support@hockeystack.com"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://hockeystack.com/dashboard"
+      "href": "https://app.hockeystack.com"
     }
   },
   "footer": {
