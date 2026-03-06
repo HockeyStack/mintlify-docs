@@ -81,35 +81,35 @@ Each task includes:
 ## FAQ
 
 <AccordionGroup>
-<Accordion title="Why is the "Generate Tasks" button disabled?">
+<Accordion title={"Why is the 'Generate Tasks' button disabled?"}>
   Either context has not been generated, or no motion is selected. Generate context first, then select a motion from the dropdown.
 </Accordion>
 
-<Accordion title="Can I generate tasks for different motions on the same company?">
-  Yes. Select a different motion from the dropdown and click "Generate Tasks" again. Each motion generates its own set of tasks.
+<Accordion title={"Can I generate tasks for different motions on the same company?"}>
+  Yes. Select a different motion from the dropdown and click 'Generate Tasks' again. Each motion generates its own set of tasks.
 </Accordion>
 
-<Accordion title="Why are only 2 new tasks generated instead of 3?">
+<Accordion title={"Why are only 2 new tasks generated instead of 3?"}>
   When active tasks already exist for the company, the system limits new generation to 2 to avoid overwhelming the rep.
 </Accordion>
 
-<Accordion title="How does the AI personalize outreach?">
+<Accordion title={"How does the AI personalize outreach?"}>
   The system analyzes the rep's previous emails to build a writing style profile. Email drafts and LinkedIn messages are written in the rep's voice, referencing specific company signals and contact details.
 </Accordion>
 
-<Accordion title="When does the background worker run?">
+<Accordion title={"When does the background worker run?"}>
   The background sync runs overnight daily. It checks all qualified companies and generates or refreshes tasks automatically. You do not need to manually trigger this — it happens for all companies that have AI context generated.
 </Accordion>
 
-<Accordion title="What happens if I cancel task generation mid-way?">
+<Accordion title={"What happens if I cancel task generation mid-way?"}>
   The process is stopped immediately. No tasks are created or modified from the cancelled run. You can trigger generation again.
 </Accordion>
 
-<Accordion title="Why isn't a company getting prospecting tasks?">
+<Accordion title={"Why isn't a company getting prospecting tasks?"}>
   The most common reason is that the company does not have an assigned owner in your CRM. Only accounts with a CRM owner are eligible. Also check that prospecting is enabled, at least one motion is configured, and the owner is assigned to a motion.
 </Accordion>
 
-<Accordion title="How are task types determined?">
+<Accordion title={"How are task types determined?"}>
   Task types are defined in the motion configuration. The default types are email and LinkedIn message. The AI selects the most appropriate type for each recommended action based on the contact and context.
 </Accordion>
 </AccordionGroup>

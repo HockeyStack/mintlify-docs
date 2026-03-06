@@ -109,39 +109,39 @@ If task generation is running, you can click the **Cancel** button on the toolba
 ## FAQ
 
 <AccordionGroup>
-<Accordion title="Do I need to manually generate context for every deal?">
+<Accordion title={"Do I need to manually generate context for every deal?"}>
   No. The overnight background worker generates context automatically for qualifying deals. Manual context generation is primarily useful when testing your configuration or when you want to interact with a deal's agent immediately without waiting for the next overnight run.
 </Accordion>
 
-<Accordion title="Why is the "Generate Tasks" button disabled?">
-  AI context must exist for the deal first. It may not have been generated yet by the overnight worker. Click "Generate Context" and wait for it to complete.
+<Accordion title={"Why is the 'Generate Tasks' button disabled?"}>
+  AI context must exist for the deal first. It may not have been generated yet by the overnight worker. Click 'Generate Context' and wait for it to complete.
 </Accordion>
 
-<Accordion title="Will disabling task generation delete my existing tasks?">
+<Accordion title={"Will disabling task generation delete my existing tasks?"}>
   No. Disabling the feature only stops new tasks from being generated. Existing tasks remain unchanged.
 </Accordion>
 
-<Accordion title="How are tasks assigned?">
+<Accordion title={"How are tasks assigned?"}>
   Tasks are primarily assigned to the deal's account executive. However, the AI may also assign tasks to other internal stakeholders — such as sales engineers, CSMs, or executives — when it determines their involvement could positively impact the deal outcome based on patterns observed in your data.
 </Accordion>
 
-<Accordion title="Can I edit generated tasks?">
+<Accordion title={"Can I edit generated tasks?"}>
   Yes. Generated tasks can be edited, completed, or dismissed like any other task.
 </Accordion>
 
-<Accordion title="What happens if I regenerate context after tasks already exist?">
+<Accordion title={"What happens if I regenerate context after tasks already exist?"}>
   Existing tasks are reviewed during the next task generation. The AI will keep tasks that are still relevant and cancel outdated ones before generating new recommendations.
 </Accordion>
 
-<Accordion title="How does the AI personalize email drafts?">
+<Accordion title={"How does the AI personalize email drafts?"}>
   The system analyzes the rep's previous email communications to build a writing style profile, then uses this profile when composing draft content.
 </Accordion>
 
-<Accordion title="Why are only 2 new tasks generated instead of 5?">
+<Accordion title={"Why are only 2 new tasks generated instead of 5?"}>
   When active tasks already exist for the deal, the system limits new task generation to 2 to avoid overwhelming the rep with too many concurrent action items.
 </Accordion>
 
-<Accordion title="When does the overnight worker run?">
+<Accordion title={"When does the overnight worker run?"}>
   The background worker runs daily overnight. It processes all qualifying deals — generating context where needed, refreshing stale context, and generating or refreshing tasks. You do not need to trigger this manually.
 </Accordion>
 </AccordionGroup>
