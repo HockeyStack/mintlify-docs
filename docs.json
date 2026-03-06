@@ -12,17 +12,12 @@
     "tabs": [
       {
         "tab": "Sales Agents",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "sales-agents/overview",
-              "sales-agents/configuration"
-            ]
-          },
+        "pages": [
+          "sales-agents/overview",
           {
             "group": "Configuration",
             "pages": [
+              "sales-agents/configuration",
               "sales-agents/configuration/personas",
               "sales-agents/account-segments",
               "sales-agents/products",
@@ -59,21 +54,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
