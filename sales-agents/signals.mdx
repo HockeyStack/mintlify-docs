@@ -1,13 +1,13 @@
 ---
 title: "Signals"
-description: "The Signals tab on a company's detail page gives you a data-driven view of how well an account fits your ICP, how ready they are to buy, and what specific si..."
+description: "The Signals tab on a company's detail page gives you a data-driven view of how engaged an account is, how strong their intent signals are, and what specific si..."
 ---
 
 <Snippet file="early-access.mdx" />
 
 ## Overview
 
-The Signals tab on a company's detail page gives you a data-driven view of how well an account fits your ICP, how ready they are to buy, and what specific signals the AI has identified. It combines AI-generated summaries, scoring, and individual AI Property research results into a single view.
+The Signals tab on a company's detail page gives you a data-driven view of how engaged an account is, how strong their intent signals are, and what specific signals the AI has identified. It combines AI-generated summaries, scoring, and individual AI Property research results into a single view.
 
 ## Accessing signals
 
@@ -20,35 +20,33 @@ At the top of the Signals tab, a summary card shows three AI-generated assessmen
 
 | Assessment | What it measures |
 |-----------|-----------------|
-| **Fit** | How well this company matches your ideal customer profile, scored 0–10 |
-| **Timing** | How ready this company is to buy right now, scored 0–10 |
+| **Fit** | How well this company matches your target profile based on research and engagement, scored 0–10 |
+| **Timing** | How ready this company is to buy right now based on intent signals and momentum, scored 0–10 |
 | **Context** | A narrative explanation of the account's current state and relevant factors |
 
 Each assessment includes a score visualization and a description explaining the reasoning. The summary is generated from the company's AI Property signals, engagement data, and intent signals.
 
 The summary is cached and refreshes when underlying signal data changes.
 
-## Score
+## Intent score
 
-When scoring is enabled for your workspace, a score section shows the company's overall account score (0–100) with AI-generated reasoning.
+When scoring is enabled for your workspace, an intent score section shows the company's current score with momentum indicators.
 
-### Score reasoning
+Your workspace uses one of two scoring modes:
 
-The reasoning section provides a plain-language explanation of the score:
+* **Delphi score** — A proprietary intent score computed by HockeyStack's scoring pipeline.
+* **LLM intent score** — An AI-generated intent score based on behavioral signals.
 
-* **Lead sentence** — A 1–2 sentence summary of the overall assessment.
-* **Strengths** — Up to 3 bullet points highlighting positive signals.
-* **Gaps** — Up to 2 bullet points highlighting areas of concern or missing data.
+The active scoring mode is configured at the workspace level. Only one score type is displayed per account.
 
-Reasoning is generated from the scoring model's feature weights and the company's actual data. It explains which factors contributed most to the score in practical terms — not technical jargon.
+### Momentum
 
-### Score visualization
+Momentum indicators show how the score is trending:
 
-The score meter displays the numeric score on a color-coded arc:
+* **Day-over-day** — Score change compared to the previous scoring event.
+* **Week-over-week** — Score change compared to approximately 7 days ago.
 
-* **Red zone (0–33)** — Low score, weak fit or readiness.
-* **Orange zone (34–66)** — Moderate score, mixed signals.
-* **Green zone (67–100)** — High score, strong fit and readiness.
+Momentum helps you identify accounts with rising intent (good timing for outreach) versus declining intent (may need a different approach).
 
 ## AI Property signals
 
@@ -72,7 +70,7 @@ Signals come from multiple sources:
 | **AI Properties** | Structured research results from your configured properties (see [AI Properties](/sales-agents/ai-properties)) |
 | **Engagement data** | Activity signals from your CRM, email, calls, and website tracking |
 | **Intent data** | Third-party intent signals when available through connected integrations |
-| **Scoring model** | Overall account score and feature-level analysis |
+| **Intent scoring** | Intent score and momentum indicators showing score trends over time |
 
 AI Property signals are generated when company context is built — either manually, by the overnight worker, or by auto AI research. Engagement and intent signals update as new data flows in from your integrations.
 
@@ -83,12 +81,12 @@ AI Property signals are generated when company context is built — either manua
 | **Signal Summary** | Synthesizes all signals into Fit, Timing, and Context assessments |
 | **Prospecting task generation** | The AI references signals when deciding task priority and content |
 | **Company Agent** | The agent has access to all signals when answering questions |
-| **AI Properties configuration** | Properties selected in the prospecting Signals tab are researched during context generation |
+| **AI Properties configuration** | All company-scoped AI properties are automatically researched during context generation |
 
 ## Constraints
 
 * Signal Summary generation requires at least one AI Property to have a researched answer for the company.
-* Score reasoning is only available when scoring is enabled for your workspace.
+* Intent score and momentum are only available when scoring is enabled for your workspace.
 * Signals are read-only on this page. To change what gets researched, edit your AI Properties in the AI Agent Builder.
 
 ## FAQ
@@ -106,8 +104,8 @@ AI Property signals are generated when company context is built — either manua
   The signals shown depend on which AI Properties you have configured. Create new properties in the AI Agent Builder to add new signal types. See [AI Properties](/sales-agents/ai-properties) for details.
 </Accordion>
 
-<Accordion title={"Why does the score reasoning mention \"strengths\" I don't agree with?"}>
-  Score reasoning is generated from the scoring model's analysis. If the reasoning seems off, review the scoring configuration to ensure the features and weights reflect your actual ICP criteria.
+<Accordion title={"Why is my intent score not showing momentum?"}>
+  Momentum requires at least two scoring events to compute a comparison. If the account was recently added or scoring was recently enabled, momentum data may not be available yet.
 </Accordion>
 
 <Accordion title={"What does it mean when a signal shows \"No data\"?"}>

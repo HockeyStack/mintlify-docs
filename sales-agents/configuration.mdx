@@ -47,11 +47,13 @@ Personas are required when configuring prospecting motions — each motion must 
 
 For further guidance, see [Personas](/sales-agents/configuration/personas).
 
-## Step 4: Define Account Segments
+## Step 4: Set Up Company Views (Optional)
 
-Account segments define your ICP criteria — the types of companies you want to target. Set them up on the **Atlas** page under the **Account Segments** card.
+Company Views are filtered lists of accounts on the **Companies** page. Prospecting motions can optionally target one or more Company Views to restrict which accounts receive outreach. If no Company View is selected on a motion, the motion applies to all eligible accounts owned by the assigned users.
 
-Account segments are required when configuring prospecting motions — each motion must target at least one segment.
+Company Views are managed on the **Companies** page. Create a new view by filtering on any combination of properties (industry, employee count, region, score, etc.) and saving the view. The same views you use for day-to-day account browsing are available as targeting options in prospecting motions.
+
+For full details, see [Sales Views](/sales-agents/sales-views).
 
 ## Step 5: Define Products
 
@@ -65,7 +67,7 @@ Navigate to the **AI Agent Builder** to create company-scoped AI properties. The
 
 Each property has an output type (Yes/No, Dropdown, Score, or Freeform) and produces structured, evidence-backed answers with citations. You can set a refresh interval in days and enable **Auto AI Research** to run property research automatically across companies in your target sales views.
 
-AI properties you create here become available in the prospecting configuration's Signals tab, appear as signal cards on company pages, and feed into the AI-generated Signal Summary.
+All company-scoped AI properties are automatically used during prospecting research and priority scoring — no manual selection is needed. Property results appear as signal cards on company pages and feed into the AI-generated Signal Summary.
 
 For full details, see [AI Properties](/sales-agents/ai-properties).
 
@@ -129,7 +131,7 @@ See [Deal Task Generation](/sales-agents/deal-task-generation) for full details 
 
 ## Step 10: Configure Prospecting Task Generation
 
-Navigate to the **Atlas** page and open the **Prospecting Task Generation** card. This modal has three tabs: **Motions**, **Task Limits**, and **Signals**.
+Navigate to the **Atlas** page and open the **Prospecting Task Generation** card. This modal has two tabs: **Motions** and **Task Limits**.
 
 ### Motions Tab
 
@@ -143,7 +145,7 @@ Motions are your outreach strategies. Each motion defines who gets targeted, how
    - **Outreach Strategy Prompt** — Detailed instructions for the AI describing the outreach approach, tone, and goals.
    - **Users** — Assign team members who will execute tasks from this motion. Only members with assigned roles are available.
    - **Personas** — Select the buyer personas this motion targets.
-   - **Target Segments** — Choose which account segments (ICP criteria) to focus on.
+   - **Company Views** (optional) — Select one or more Company Views to restrict which accounts this motion applies to. If no view is selected, the motion applies to all eligible accounts owned by the assigned users.
    - **Product** — Select the product this motion is associated with.
 3. Click **Save Motion**.
 
@@ -173,17 +175,6 @@ Set daily task generation caps per user role to prevent reps from being overwhel
 - The default daily cap is **10 tasks per role**.
 
 Roles are created and assigned in **Workspace Settings \> Team** (Step 2). A link is provided in this tab for quick navigation.
-
-### Signals Tab
-
-Configure which AI properties the system evaluates during company research for prospecting.
-
-- **Research Properties** — Select from your company-scoped AI properties. These determine what signals the AI looks for when analyzing target accounts.
-- If you need new AI properties, use the link provided to navigate to the AI Property builder.
-
-Choose properties that inform **personalization and timing** — signals that help the AI tailor outreach content or decide when to reach out. Good examples: "Is this company actively hiring for relevant roles?", "Has this company recently raised funding?", "What technology stack do they use?"
-
-Avoid adding fit-related properties here (e.g., industry, employee count, revenue range). Fit is already assessed by your [Account Segments](/sales-agents/account-segments) — the AI uses segments to decide *which* accounts to target. The Signals tab controls what the AI researches to decide *how* to personalize outreach to those accounts.
 
 ### Enabling Prospecting
 
@@ -223,7 +214,7 @@ After completing your configuration, you should test it immediately rather than 
 If the tasks don't match your expectations:
 
 1. **Delete the generated tasks** from the Tasks tab.
-2. **Go back to the relevant configuration** and adjust the outreach strategy prompt, personas, segments, or other settings.
+2. **Go back to the relevant configuration** and adjust the outreach strategy prompt, personas, Company Views, or other settings.
 3. **Save the updated configuration.**
 4. **Repeat the test** — Generate context and tasks again on the same company or deal.
 5. Continue iterating until the output quality meets your standards.
@@ -237,7 +228,7 @@ Once you are satisfied with the quality of generated tasks on a few test account
 ## Constraints
 
 - You cannot save prospecting configuration while a new motion is still being edited — finish or cancel it first.
-- Motion names, outreach strategy prompts, users, personas, segments, and product are all required.
+- Motion names, outreach strategy prompts, users, personas, and product are all required. Company Views are optional.
 - Duplicate user assignments within a motion are automatically prevented.
 - Changes only take effect after saving — closing without saving discards all edits.
 
@@ -245,7 +236,7 @@ Once you are satisfied with the quality of generated tasks on a few test account
 
 <AccordionGroup>
   <Accordion title={"What order should I set things up in?"}>
-    Follow the steps in this guide sequentially. Data sources and team setup come first because everything else depends on them. Personas, segments, and products come next because prospecting motions reference them. AI properties, stakeholder discovery, deal task generation, and prospecting configuration come last.
+    Follow the steps in this guide sequentially. Data sources and team setup come first because everything else depends on them. Personas and products come next because prospecting motions reference them. Company Views, AI properties, scoring, stakeholder discovery, deal task generation, and prospecting configuration come last.
   </Accordion>
   <Accordion title={"Why was prospecting automatically disabled when I saved?"}>
     This happens when the configuration no longer meets the minimum requirements (at least one valid, enabled motion with assigned users). Check that your motions have all required fields and at least one user assigned.

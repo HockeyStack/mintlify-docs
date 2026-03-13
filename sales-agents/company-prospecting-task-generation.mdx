@@ -7,7 +7,7 @@ description: "Company Prospecting Task Generation uses AI to create outbound pro
 
 ## Overview
 
-Company Prospecting Task Generation uses AI to create outbound prospecting tasks for target accounts. Unlike deal task generation (which focuses on progressing existing deals), prospecting task generation is designed for outreach to companies that match your ideal customer profile, driven by configured motions and outreach strategies.
+Company Prospecting Task Generation uses AI to create outbound prospecting tasks for target accounts. Unlike deal task generation (which focuses on progressing existing deals), prospecting task generation is designed for outreach to companies owned by your reps, driven by configured motions and outreach strategies.
 
 ## Prerequisites
 
@@ -32,11 +32,11 @@ Company Prospecting Task Generation uses AI to create outbound prospecting tasks
 
 Each motion defines an outreach strategy. When you generate tasks for a motion, the system runs a multi-step pipeline:
 
-1. **Analyzes company context** — Reviews signals, contacts, activity history, and AI Property research results.
-2. **Creates task briefs** — The AI determines which actions would be most effective based on the motion's outreach strategy prompt.
+1. **Analyzes company context** — Reviews signals, contacts, activity history, AI Property research results, opportunity history, and campaign engagement.
+2. **Creates task briefs** — The AI determines which actions would be most effective based on the motion's outreach strategy prompt, product context, and target personas.
 3. **Structures tasks** — Briefs are converted into concrete tasks with types, assignees, and target contacts matching the motion's personas.
 4. **Validates for duplicates** — The system checks against existing active tasks to prevent duplicate or conflicting recommendations.
-5. **Generates content** — Email drafts, LinkedIn messages, or call talking points are written, personalized to the assigned rep's writing style and the target contact's profile.
+5. **Generates content** — Email drafts, LinkedIn messages, or call talking points are written, personalized to the assigned rep's writing style, the motion's product and outreach strategy, and the target contact's profile.
 6. **Persists results** — Validated tasks are saved and appear in the company's Tasks tab.
 
 ### Task Review and Refresh
@@ -49,7 +49,15 @@ When generating tasks for a company that already has active tasks:
 
 ### Background Sync
 
-Prospecting tasks are also refreshed automatically overnight by a background worker. This means:
+Prospecting tasks are also refreshed automatically overnight by a background worker. The worker processes accounts in a per-account pipeline:
+
+1. Computes headroom for each rep (daily cap minus existing tasks).
+2. Resolves Company View membership to determine which accounts match each motion's targeting.
+3. Resolves account ownership to match accounts to reps.
+4. Builds a priority-ordered queue using intent signals, momentum, account research, and contact quality.
+5. Processes top accounts per rep until headroom is filled.
+
+This means:
 
 * New tasks are generated daily for companies that qualify.
 * Stale tasks (no activity for 3+ days) trigger refreshed recommendations.
@@ -63,7 +71,7 @@ Each task includes:
 * **Assignee** — A rep assigned to the motion.
 * **Priority** — Urgent, high, medium, or low.
 * **Due date** — Recommended completion date.
-* **Pre-drafted content** — Email drafts or LinkedIn messages personalized to the target contact, using the rep's writing style.
+* **Pre-drafted content** — Email drafts or LinkedIn messages personalized to the target contact, using the rep's writing style and the motion's product context.
 * **Agent reasoning** — Why the AI recommended this specific action.
 
 ## Constraints
