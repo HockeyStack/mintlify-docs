@@ -45,7 +45,7 @@ Active filters appear as chips in the filter bar. When your filters differ from 
 The sales dashboard displays companies in a table with these columns:
 
 | Column | Description |
-|--------|-------------|
+| --- | --- |
 | **Company** | Company name, domain, and logo. Always visible. |
 | **Stage** | Current lifecycle stage. Toggleable. |
 | **Score** | Account intelligence score. Toggleable. |
@@ -65,6 +65,25 @@ From the view selector dropdown, hover over any custom view to access actions:
 - **Rename** — Change the view's name.
 - **Duplicate** — Create a copy of the view with all its filters and settings.
 - **Delete** — Permanently remove the view.
+
+## View best practices
+
+Views are shared across your workspace. How you structure them affects everyone on the team — and how reliably features like scoring, stakeholder discovery, task generation, and CRM sync behave.
+
+**Consolidate by team, not by individual**
+
+The most common mistake is creating one view per rep. This creates noise, makes views hard to manage, and scatters the accounts scoring and task generation run against.
+
+Instead, create one view per team or pod and filter by owner.
+
+|  | Approach | Why |
+| --- | --- | --- |
+| ✅ **Do** | Create one view<br />"AE Team – Americas" <br />with a filter: <br />Account Owner is one of <br />\[rep 1, rep 2, rep 3...\] | One view to maintain. <br />Scoring and task generation <br />target the full segment. <br />Easy to extend when reps change. |
+| ❌ **Don't** | Create one view per rep | Multiplies maintenance burden. <br />Scores and tasks fragment across views. <br />Admins end up managing a graveyard of stale views. |
+
+**Keep view names descriptive**
+
+Name views by segment, not by date or owner. `ENT – EMEA AEs` ages better than `AE Accounts`.
 
 ## View configuration
 
@@ -87,9 +106,9 @@ Click the **gear icon** next to the view selector to open the configuration drop
 Views are referenced across many features in Sales Agents:
 
 | Feature | How views are used |
-|---------|-------------------|
+| --- | --- |
 | **Scoring** | Target audience — the model trains on and scores companies in selected views |
-| **Stakeholder Discovery** | Views are added in Atlas > Personas > Stakeholder Mapping to run discovery across all companies |
+| **Stakeholder Discovery** | Views are added in Atlas \> Personas \> Stakeholder Mapping to run discovery across all companies |
 | **AI Property auto research** | Evaluate properties for companies in selected views |
 | **CRM sync** | Push scored and enriched data back to your CRM |
 | **Daily workflow** | Reps use filtered views to focus on their accounts |
@@ -111,24 +130,24 @@ The view toolbar provides:
 - View configuration (gear icon) is only available for custom views with write access.
 - Rescoring and account plan generation require admin access.
 - CRM sync requires an active CRM integration (Salesforce or HubSpot).
-- Stakeholder discovery is configured separately from Atlas > Personas > Stakeholder Mapping (see [Stakeholder Discovery](/sales-agents/stakeholder-discovery)).
+- Stakeholder discovery is configured separately from Atlas \> Personas \> Stakeholder Mapping (see [Stakeholder Discovery](/sales-agents/stakeholder-discovery)).
 
 ## FAQ
 
 <AccordionGroup>
-<Accordion title={"Can I share a view with my team?"}>
-  Views are workspace-wide. When you save a view, it is visible to all team members. Use "Save for everyone" to update filters for all users, or "Save as new view" to create a personal variant.
-</Accordion>
+  <Accordion title="Can I share a view with my team?">
+    Views are workspace-wide. When you save a view, it is visible to all team members. Use "Save for everyone" to update filters for all users, or "Save as new view" to create a personal variant.
+  </Accordion>
 
-<Accordion title={"What happens if I change filters on a view that scoring targets?"}>
-  A warning appears when saving filter changes to a view used by Delphi scores. Changing filters affects which companies the model scores going forward.
-</Accordion>
+  <Accordion title="What happens if I change filters on a view that scoring targets?">
+    A warning appears when saving filter changes to a view used by Delphi scores. Changing filters affects which companies the model scores going forward.
+  </Accordion>
 
-<Accordion title={"How do I export my view data?"}>
-  Click the **Download CSV** button in the toolbar to export all companies in the current view as a CSV file.
-</Accordion>
+  <Accordion title="How do I export my view data?">
+    Click the **Download CSV** button in the toolbar to export all companies in the current view as a CSV file.
+  </Accordion>
 
-<Accordion title={"Can I have different views for different team members?"}>
-  All custom views are shared across the workspace. Use the "My Companies" default view for a personal filtered list, or create views with owner filters to segment by rep.
-</Accordion>
+  <Accordion title="Can I have different views for different team members?">
+    All custom views are shared across the workspace. Use the "My Companies" default view for a personal filtered list, or create views with owner filters to segment by rep.
+  </Accordion>
 </AccordionGroup>
