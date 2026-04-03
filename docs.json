@@ -13,8 +13,8 @@
       "anchors": [
         {
           "anchor": "Sales Agents",
-          "href": "/sales-agents",
-          "icon": "robot"
+          "icon": "robot",
+          "href": "/sales-agents"
         }
       ]
     },
@@ -30,7 +30,6 @@
               "sales-agents/configuration/users-and-roles",
               "sales-agents/sales-views",
               "sales-agents/configuration/personas",
-
               "sales-agents/products",
               "sales-agents/ai-properties",
               "sales-agents/scoring",
@@ -50,6 +49,7 @@
             "group": "Companies",
             "pages": [
               "sales-agents/companies",
+              "sales-agents/companies-copied-1",
               "sales-agents/signals",
               "sales-agents/people",
               "sales-agents/company-agent",
