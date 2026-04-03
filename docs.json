@@ -49,6 +49,7 @@
             "group": "Companies",
             "pages": [
               "sales-agents/companies",
+              "sales-agents/companies-and-views",
               "sales-agents/signals",
               "sales-agents/people",
               "sales-agents/company-agent",
