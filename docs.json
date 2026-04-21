@@ -20,14 +20,15 @@
     },
     "tabs": [
       {
-        "tab": "Release Notes",
-        "pages": [
-          "apr-22-2026"
-        ]
-      },
-      {
         "tab": "Revenue Agents",
         "pages": [
+          {
+            "group": "Release Notes",
+            "icon": "rocket-launch",
+            "pages": [
+              "apr-22-2026"
+            ]
+          },
           "sales-agents/overview",
           {
             "group": "Configuration",
