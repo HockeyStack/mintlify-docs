@@ -20,6 +20,12 @@
     },
     "tabs": [
       {
+        "tab": "Release Notes",
+        "pages": [
+          "apr-22-2026"
+        ]
+      },
+      {
         "tab": "Revenue Agents",
         "pages": [
           "sales-agents/overview",
