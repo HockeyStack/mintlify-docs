@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "HockeyStack Sales Agents",
+  "name": "HockeyStack Revenue Agents",
   "colors": {
     "primary": "#0B0E11",
     "light": "#3B82F6",
@@ -12,15 +12,15 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Sales Agents",
+          "anchor": "Revenue Agents",
           "icon": "robot",
-          "href": "/sales-agents"
+          "href": "https://agents-docs.hockeystack.com/sales-agents"
         }
       ]
     },
     "tabs": [
       {
-        "tab": "Sales Agents",
+        "tab": "Revenue Agents",
         "pages": [
           "sales-agents/overview",
           {
@@ -96,8 +96,8 @@
   },
   "footer": {
     "socials": {
-      "linkedin": "https://linkedin.com/company/hockeystack",
-      "website": "https://hockeystack.com"
+      "website": "https://hockeystack.com",
+      "linkedin": "https://www.linkedin.com/company/hockeystack"
     }
   }
 }
