@@ -1,0 +1,54 @@
+---
+title: "Salesforce iFrame"
+---
+
+### **Step 1: Modify permissions to allow installation**
+
+You can read how to modify permissions to allow installation in this doc: [Salesforce Permissions](https://docs.hockeystack.com/account-intelligence/getting-started/salesforce/salesforce-permissions)
+
+### **Step 2: Add sales reps as viewers in HockeyStack**
+
+Every sales rep who needs to see the iFrame in Salesforce must be added as a viewer in HockeyStack. This is free of charge — viewer seats do not count toward your plan.
+
+1. In HockeyStack, go to **Workspace Settings (under logo in sidebar) \> Team**
+2. Click **Invite** in **'Team Members'** section
+3. Enter the rep's email and set their role to **Viewer**
+4. Repeat for each rep who needs iFrame access
+
+### **Step 3: Click "Upload iFrame" in HockeyStack**
+
+1. Go to Atlas \> Integrations
+2. Click on Salesforce "Configure" button, in the CRM section
+3. Click on "Upload iFrame"
+
+<Frame>
+  ![Image](/images/image-2.png)
+</Frame>
+
+### **Step 4: Install HockeyStack components in Salesforce**
+
+The upload deploys two components to your Salesforce org:
+
+- **HockeyStack** — for embedding on **record pages** (Account, Contact, Lead). Shows account intelligence or contact/lead timelines contextually based on the record you're viewing.
+- **HockeyStack Full App** — for adding HockeyStack as a **standalone tab or full page**. Loads the complete HockeyStack dashboard inside Salesforce.
+
+**To add HockeyStack to a record page (e.g. Account):**
+
+1. In Salesforce, click the Settings icon (top-right), then Open Advanced Setup.
+2. In the left search bar, type Lightning.
+3. Under User Interface, select Lightning App Builder.
+4. Choose the record page you want to edit (e.g. Account Record Page), then click Edit.
+5. On the left panel, scroll down to the Custom section.
+6. Find HockeyStack, then drag and drop it to the desired location on your page.
+7. Click Save, then Activate the page if prompted.
+
+**To add HockeyStack as a standalone tab:**
+
+1. In Salesforce, click the Settings icon (top-right), then Open Advanced Setup.
+2. In the left search bar, type Lightning.
+3. Under User Interface, select Lightning App Builder.
+4. Click New, select App Page, and give it a name (e.g. "HockeyStack").
+5. Choose a One Region layout.
+6. On the left panel, scroll down to the Custom section.
+7. Find HockeyStack Full App, then drag and drop it onto the page.
+8. Click Save, then Activate. When prompted, choose to add it to your Lightning app's navigation bar.

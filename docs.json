@@ -40,7 +40,8 @@
               "sales-agents/products",
               "sales-agents/ai-properties",
               "sales-agents/scoring",
-              "sales-agents/stakeholder-discovery"
+              "sales-agents/stakeholder-discovery",
+              "sales-agents/salesforce-i-frame"
             ]
           },
           {
