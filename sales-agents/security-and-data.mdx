@@ -1,0 +1,109 @@
+---
+title: "Security and Data Handling"
+---
+
+### 1. What data does HockeyStack access, and how is it used?
+
+HockeyStack Agents connect to your existing go-to-market systems to power AI-driven revenue workflows. Depending on which agents you configure, this typically includes:
+
+- **CRM data** — accounts, contacts, opportunities, deal history, and activity timelines (e.g., Salesforce, HubSpot)
+- **Conversation & meeting data** — call transcripts, meeting notes, and email threads used for account briefs, coaching reports, and next-best-step recommendations
+- **Product usage & engagement signals** — usage patterns and feature adoption data used by expansion and retention agents
+- **Marketing & pipeline data** — campaign performance and attribution data used by budget optimization and anomaly detection agents
+
+All data is used exclusively to execute the agent workflows you configure (e.g., deal resurrection, pre-call briefs, forecast challengers). We do not sell, share, or use customer data for training models, benchmarking, or any purpose outside of delivering the product to you.
+
+---
+
+### 2. Who at HockeyStack can access our data?
+
+Access to customer data is tightly restricted under our **Confidential** data classification:
+
+- Only specific employees whose roles require it (e.g., support engineering, infrastructure) can access customer data, and only on a need-to-know basis.
+- Access for non-preapproved roles requires documented approval from the data owner.
+- All access is authenticated — no anonymous or unauthenticated access is permitted to any system storing customer data.
+- Customer data is never used in non-production systems or environments.
+
+---
+
+### 3. Where is our data stored?
+
+- **Cloud provider:** Amazon Web Services (AWS) and MongoDB Atlas
+- **Region:** All data is stored in the **EU (Frankfurt, Germany)**.
+- **Infrastructure:** All production systems run on managed cloud infrastructure with encryption at rest and in transit. We do not operate on-premise data centers.
+
+---
+
+### 4. How is our data protected?
+
+HockeyStack enforces multiple layers of protection for all customer data:
+
+- **Encryption at rest** on all databases and storage volumes
+- **Encryption in transit** (TLS) for all data moving over public networks
+- **Full disk encryption** on all employee laptops and devices that may handle customer data
+- **Screen lock policies** — devices auto-lock after 15 minutes of inactivity
+- **No removable media** — customer data is never stored on USB drives, personal devices, or removable media
+- **Security monitoring** — event and log data retained in Datadog and Sentry for 1 year; vulnerability scans run via Qualys with results retained for 6 months
+
+---
+
+### 5. How long do you retain our data?
+
+During an active contract, your data is retained for the lifetime of the engagement. Once the contract terminates:
+
+- **Customer data is deleted within 30 days** of contract termination.
+- Deletion is performed through manual data deletion processes managed by the Engineering team.
+- Any personally identifiable information (PII) is securely deleted following termination in compliance with company policy, contractual commitments, and applicable data protection laws.
+
+---
+
+### 6. If we run a POC, how long until our data is purged?
+
+The same 30-day post-termination deletion policy applies to POCs. Once the POC concludes — whether you move forward or not — all ingested data is deleted within 30 days. If you need a shorter deletion window, we can accommodate that contractually.
+
+---
+
+### 7. Can we request early deletion of our data?
+
+Yes. You can request deletion of your data at any time. Under our data management policy:
+
+- PII is deleted in response to a verified request from a customer or data subject, unless we have a legitimate business or legal obligation to retain it.
+- We will confirm deletion in writing upon completion.
+
+---
+
+### 8. What compliance certifications does HockeyStack hold?
+
+HockeyStack holds the following certifications and compliance standards:
+
+- **SOC 2** compliant
+- **ISO 27001** certified
+- **GDPR** compliant
+- **HIPAA** compliant
+- **PCI** compliant
+- **FedRAMP** compliant
+- **CSA STAR Level 1** compliant
+
+Our security program includes internal and external audits, annual reviews of data retention requirements, and continuous vulnerability scanning and security event monitoring. Full documentation, including penetration test reports and certificates, is available via the [HockeyStack Trust Center](https://security.hockeystack.com/).
+
+---
+
+### 9. What happens if there's a security incident involving our data?
+
+HockeyStack maintains an incident response process. In the event of a security incident:
+
+- Affected customers are notified in accordance with contractual commitments and applicable laws.
+- Security event data is retained for 1 year to support investigation and forensic analysis.
+- All violations are reported to executive leadership and addressed through our enforcement procedures.
+
+---
+
+### 10. Do you share our data with third parties?
+
+Customer data is never shared with third parties except where required to deliver the service (e.g., cloud infrastructure providers like AWS and MongoDB Atlas). Any transfer of confidential data outside the company:
+
+- Requires explicit written permission from management or the data owner
+- Must be governed by a legal contract or arrangement
+- Third-party vendors are assessed for secure data handling and disposal practices per our Third-Party Management Policy
+
+---
