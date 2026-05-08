@@ -1,0 +1,346 @@
+---
+title: "Revenue Agents APIs Guide"
+---
+
+# HockeyStack Revenue Agents API
+
+A guide for customer engineering, RevOps, and GTM Engineering teams.
+
+## Example Use cases
+
+The examples below extend the four core HockeyStack use cases (Shorten Ramp Time, Reduce Rep Variability, Generate Pipeline, Drive Expansion) into custom workflows. Combine with your own data sources.
+
+### Reduce rep variability
+
+**Call scoring and rep coaching.** Push call transcripts into a deal-agent conversation and ask for a structured score against your rubric (qualification depth, demo flow, objection handling, next steps). Aggregate by rep across the quarter for coaching themes. Works with Gong, Chorus, or any transcription source.
+
+**Qualification updates.** Ask each deal agent for a structured qualification update against your framework of choice. Write the result back into Salesforce or a custom dashboard. Flag deals missing key fields.
+
+**Manager-driven task injection.** Use `POST /tasks` to push manager-defined coaching tasks ("listen back to last call and complete the rubric") into the rep cockpit. Reps see them in the same UI as agent-generated work.
+
+### Shorten ramp time
+
+**Account intelligence on demand.** Slack bot that takes a question, looks up the account in your CRM, hits the matching deal or company agent, and posts the synthesized reply back in thread. New reps get up to speed in minutes.
+
+**Auto-generated executive briefs.** For each upcoming meeting, ask the deal agent for a one-page brief: where the deal stands, who the key contacts are, what's gone well, what's at risk, recommended next move. Email or Slack to the AE before the call.
+
+### Generate pipeline
+
+**Battlecard automation.** Query deal agents across the workspace for competitor mentions and how reps handled them. Aggregate into living battlecards. Compare win rates by competitor.
+
+**Objection tracking.** Walk conversations and tasks across deals, classify objections, and surface trends to product, marketing, and enablement. Each objection is tied to deal stage, persona, and outcome.
+
+**Outbound enablement.** Per outbound target, generate a tailored opening message via the company agent, then `POST /tasks` to drop a `linkedin` or `email` task into the rep cockpit with the draft pre-populated. Reps still review and edit, but the cold start is gone.
+
+### Drive expansion
+
+**ABM and account expansion.** Use company agents to surface adjacent contacts, missed product fit signals, and expansion paths inside existing customers. Drop expansion tasks into the CSM workflow before renewal conversations.
+
+**Pipeline risk flags.** Daily job that queries each active deal agent with a structured risk question. Write the result into a Salesforce custom field. Forecast calls reference it instead of relying on stage age.
+
+### Cross-cutting
+
+**Custom integration bridge.** If a tool you use is not natively integrated with HockeyStack, push relevant events into the agent through a conversation, then read tasks back into your tool of choice. This is how teams plug in custom dialers, niche enablement platforms, and internal apps without waiting on a roadmap item.
+
+**Lost deal post-mortems.** When a deal moves to closed-lost, ask the agent for the top three contributing factors based on actual deal history. Aggregate across the quarter for retro material.
+
+**Credit observability.** Pipe `/credits/balance` and `/credits/usage` into your existing observability stack. Alert on `is_limit_exceeded` and on `remaining_on_demand_credits` falling below a threshold. Avoids 503s in batch jobs.
+
+## What it is
+
+The Revenue Agents API is a headless HTTP interface to the same agent layer that powers Revenue Agents inside HockeyStack. Each agent is powered by your Blueprint, the ML model of how your company wins, and grounded in the full sequence and causality of every signal across your sales stack. Agents are scoped to a single deal or a single company. With the API you can spin them up programmatically, hold conversations with them, create and manage tasks, and wire all of it into the rest of your stack.
+
+If you've thought about building your own revenue intelligence layer on top of CRM events, the API exists so you can build with HockeyStack instead of from scratch. The Blueprint, the agent runtime, and the data foundation are already in place. You extend them.
+
+## When to reach for the API
+
+Reach for the API when you want to:
+
+- Run agents in bulk across your portfolio rather than one deal at a time
+- Pipe agent outputs into Salesforce custom fields, dashboards, or reports
+- Push transcripts, calls, or events from systems HockeyStack doesn't natively integrate with so the agent can reason over them
+- Create tasks programmatically into the rep cockpit from any external trigger
+- Build internal tools (Slack bots, Cursor automations, n8n workflows) that ask agents questions on demand
+- Track and gate on credit usage from your own observability stack
+
+If your use case is fully covered by the in-app experience, stay in the app. The API is for the workflows the UI doesn't reach.
+
+## Core concepts
+
+**Deal agents.** Scoped to a single deal. Reason over the deal's full history of touches, calls, emails, meeting notes, contacts, and signals.
+
+**Company agents.** Scoped to a company or account. Broader than a single deal. Useful for account-level questions, expansion, and ABM.
+
+**Conversations.** A conversation is a persistent thread on an agent. You create the thread once, then post messages into it. Conversations are workspace-shared, so multiple users in the same workspace can see and continue the same thread.
+
+**Tasks.** Concrete next steps tied to a deal, company, contact, or meeting. Most tasks are agent-generated. The API also lets you create tasks manually, transition them through statuses, and read the same data the rep cockpit reads. Task types: `call`, `email`, `linkedin`. Statuses: `pending`, `completed`, `dismissed`, `cancelled`.
+
+**Credits.** Usage is metered per workspace per month against an included bundle plus an optional on-demand cap. There is no pre-paid balance to draw down. When the cap is exceeded, write operations return 503. Use the credits endpoints to monitor approach to that line.
+
+## Authentication
+
+Every request except `/health` requires a Bearer token in the `Authorization` header.
+
+```text
+Authorization: Bearer hsr_live_<your_workspace_token>
+```
+
+Tokens are workspace-scoped. Rotate them like any production secret. Never embed in client-side code. Test your token with `GET /me` as a first integration check.
+
+## Base URL
+
+```text
+<https://app.hockeystack.com/api/revenue-agents/v1>
+```
+
+The OpenAPI spec is the authoritative source for all paths and schemas. This guide describes patterns and intent.
+
+## Quickstart
+
+Confirm authentication, provision an agent, create a conversation, send a message, and read tasks.
+
+```text
+# 1. Confirm token
+curl <https://app.hockeystack.com/api/revenue-agents/v1/me> \\
+  -H "Authorization: Bearer hsr_live_..."
+
+# 2. Initialize a deal agent (async, returns 202)
+curl -X PUT \\
+  <https://app.hockeystack.com/api/revenue-agents/v1/deals/DEAL_ID/agent> \\
+  -H "Authorization: Bearer hsr_live_..."
+
+# 3. Poll until status is "active" (typically 3-8 minutes)
+curl <https://app.hockeystack.com/api/revenue-agents/v1/deals/DEAL_ID/agent> \\
+  -H "Authorization: Bearer hsr_live_..."
+
+# 4. Create a conversation thread
+curl -X POST \\
+  <https://app.hockeystack.com/api/revenue-agents/v1/deals/DEAL_ID/conversations> \\
+  -H "Authorization: Bearer hsr_live_..." \\
+  -H "Content-Type: application/json" \\
+  -d '{"user_email": "rep@yourco.com"}'
+# returns { "conversation_id": "abc123", ... }
+
+# 5. Send a message
+curl -X POST \\
+  <https://app.hockeystack.com/api/revenue-agents/v1/deals/DEAL_ID/conversations/abc123/messages> \\
+  -H "Authorization: Bearer hsr_live_..." \\
+  -H "Content-Type: application/json" \\
+  -d '{"message": "Summarize where this deal stands and the top three risks."}'
+
+# 6. List tasks the agent generated
+curl "<https://app.hockeystack.com/api/revenue-agents/v1/tasks?deal_id=DEAL_ID&status=pending>" \\
+  -H "Authorization: Bearer hsr_live_..."
+```
+
+If step 3 returns `status: provisioning_failed`, re-issue the PUT. A subsequent 409 means provisioning is already in flight; keep polling.
+
+## Agent lifecycle
+
+Agents are provisioned per deal or company. Provisioning is async.
+
+`PUT /deals/{dealId}/agent` and `PUT /companies/{companyId}/agent` return 202 immediately and spawn a worker. The same shape works for both. `dealId` and `companyId` are your CRM object IDs (HubSpot or Salesforce).
+
+The state envelope returned by GET is polymorphic. The `status` field drives which other fields are populated:
+
+- `active`: `agent_id`, `created_at`, `last_synced_at` populated
+- `initializing`: `job_id`, `progress_stream_url` populated; `agent_id` may be stale or null
+- `provisioning_failed`: `job_id`, `failed_at`, `error`, `retry_with` populated; `agent_id` null
+
+Poll the GET every 30 seconds until `status` flips. If you hit 409 on a PUT, provisioning is already in flight. If you get a 404 on the GET, no agent has been initialized yet (or the underlying CRM record doesn't exist).
+
+`DELETE /deals/{dealId}/agent` removes the agent and its conversation history. Idempotent (returns 204 even if the agent never existed).
+
+`GET /deals/agents` and `GET /companies/agents` list initialized agents in the workspace. Cursor-paginated, default page size 50, max 200. Use these to see what's already provisioned before issuing new PUTs.
+
+## Conversations
+
+Conversations are the primary way to interact with an agent. Two-step lifecycle: create the thread, then post messages.
+
+### Create a conversation
+
+```text
+POST /deals/{dealId}/conversations
+POST /companies/{companyId}/conversations
+```
+
+Body is optional. The only honored field today is `user_email` for attribution.
+
+Returns 201 with `{ conversation_id, created_at, deal_id|company_id }`.
+
+### Send a message
+
+```text
+POST /deals/{dealId}/conversations/{cid}/messages
+POST /companies/{companyId}/conversations/{cid}/messages
+```
+
+Body is required: `{ "message": "..." }`. Max 10000 characters.
+
+Returns 200 with `{ conversation_id, messages: [{ role: "assistant", content: "..." }] }`.
+
+If the agent is still initializing, this returns 409 with `Retry-After`. Retry after that period.
+
+### Two transports
+
+The default response is REST blocking. The endpoint also supports SSE streaming via `Accept: text/event-stream` for interactive UIs (Slack bots, dashboards). Streaming events include incremental text and a final `done` event with the same shape as the REST response. Tool-call and reasoning events are intentionally not part of the v1 surface.
+
+For batch jobs, background workers, and most automation, REST blocking is the right call.
+
+### List and continue
+
+```text
+GET /deals/{dealId}/conversations            # list threads
+GET /deals/{dealId}/conversations/{cid}/messages   # paginated messages
+DELETE /deals/{dealId}/conversations/{cid}   # delete thread
+```
+
+Conversations are workspace-shared. Anyone in the workspace with API access can read or continue them. The messages list returns user and assistant turns; tool-call events are intentionally excluded.
+
+## Tasks
+
+Tasks are how agents drive action and how the rep cockpit gets fed. The API exposes the full lifecycle.
+
+### List tasks
+
+```text
+GET /tasks
+```
+
+Cursor-paginated, default 50, max 200. Filterable by allowlist:
+
+- `assignee_id`, `deal_id`, `company_id`, `meeting_id`, `agent_id`
+- `task_type`: `call`, `email`, `linkedin`
+- `status`: `pending`, `completed`, `dismissed`, `cancelled`
+- `due_before`, `due_after` (ISO 8601)
+
+Server does not accept arbitrary queries. Filter further client-side if needed.
+
+### Create a task manually
+
+```text
+POST /tasks
+```
+
+Required body fields: `task_type`, `task_title`, `assignee_id`, `targets`. At least one target field is required (`contact`, `deal_id`, `company_id`, or `meeting_id`).
+
+Important contact-targeting rules:
+
+- The contact identity is `email + linkedin_url`. Both required if you target a contact. There is no stable contact ID in the public API.
+- For `call` tasks, `phone_number` is required on the contact.
+- Optional `draft` field carries type-specific content: `talking_points` (call), `subject` and `body` (email), `message` (linkedin).
+
+Returns 201 with the new task.
+
+### Get, transition, or remove a task
+
+```text
+GET /tasks/{taskId}
+PATCH /tasks/{taskId}
+DELETE /tasks/{taskId}
+```
+
+PATCH is for status transitions. Only `status` is mutable in v1. Allowed transitions: `pending → {completed, dismissed, cancelled}`. Tasks already in a terminal state return 409. `dismiss_reason` is required when `status: dismissed` (returns 422 if missing).
+
+DELETE soft-deletes the task (hides it from listings). This is distinct from PATCH `status: cancelled`, which keeps the task visible as a record. Use cancelled for audit, delete for cleanup.
+
+### Task shape
+
+`task_id` and `status` are the only guaranteed fields across the wire. When present, the task object exposes `task_type`, `task_title`, `priority`, `assignee_id`, `agent_id` (null for manually created), `targets`, `draft`, `reason`, and timestamps for create, update, completion, and dismissal.
+
+## Credits
+
+Three endpoints for tracking workspace credit state.
+
+### Current state
+
+```text
+GET /credits/balance
+```
+
+Returns:
+
+- `included_credits`, `monthly_used_credits`, `remaining_included_credits`
+- `on_demand_credit_limit` (nullable; null means uncapped), `on_demand_used_credits`, `remaining_on_demand_credits`
+- `on_demand_uncapped` (boolean companion for strict-typed SDKs)
+- `is_limit_exceeded`, `as_of`, `resets_at`
+
+Gate write-heavy jobs on `remaining_included_credits` and `remaining_on_demand_credits` to avoid a 503.
+
+### Aggregated usage
+
+```text
+GET /credits/usage?from=...&to=...&group_by=feature|day|feature,day
+```
+
+Default window is the last 30 days. Returns total credits used in window plus per-group rows.
+
+### Raw ledger
+
+```text
+GET /credits/operations?from=...&to=...&feature=...&cursor=...&limit=...
+```
+
+Paginated raw operation log. Useful for chargeback to teams, drilling into anomalies, or reconciling against billing.
+
+## Operational notes
+
+**Rate limits.** Two pools: `read` and `write`. The pool that consumed a request is returned in `X-RateLimit-Pool`. Watch `X-RateLimit-Remaining` and `X-RateLimit-Reset` and back off when low. 429 responses include `Retry-After`.
+
+**Credit caps.** Hitting the workspace cap returns 503 on write operations. Treat 503 as a signal to pause batch jobs, not to retry aggressively. Use `/credits/balance` to detect this before issuing the call.
+
+**Provisioning latency.** PUT returns 202, not the active agent. Always poll. Plan batch jobs around the 3 to 8 minute window. If you need to provision many agents at once, kick them off in parallel and poll in a queue. Re-issue the PUT only after `provisioning_failed`.
+
+**Idempotency.** DELETE endpoints are idempotent (return 204 even if the resource never existed). PUT during in-flight provisioning returns 409. POST conversations and tasks are not idempotent; deduplicate client-side if needed.
+
+**Errors.** Standardized response: `{ error: { code, category, message, request_id, details? } }`. Categories:
+
+- `permanent`: fix the request
+- `transient`: retry with backoff
+- `rate_limited`: retry after `Retry-After`
+
+Codes are stable and namespaced (e.g. `auth.token_missing`, `auth.token_invalid`). Always log `request_id` for support tickets; it matches the `X-Request-Id` header.
+
+**404 nuances.** A 404 on an agent endpoint can mean the agent isn't initialized OR the underlying CRM record doesn't exist. Confirm against your CRM before retrying.
+
+**Conversation continuity.** Re-use the `conversation_id` in the URL path (`/conversations/{cid}/messages`) to continue a thread. The conversation list endpoint returns workspace-shared threads, so coordinate with teammates if multiple humans may be in the same conversation.
+
+## Common integration patterns
+
+**Salesforce.** Run a scheduled job that pulls open opps, queries the matching deal agent, and writes structured output into custom fields. Pairs cleanly with the Salesforce MCP server in Cursor or Claude Code.
+
+**Gong, Chorus, or other call platforms.** Push transcripts into a deal-agent conversation, ask for scoring or summaries, write structured output into your call review system or BI layer. Optionally `POST /tasks` to log coaching items for the rep.
+
+**Slack.** Build a slash command or app that creates a conversation, sends a message, and posts the reply back in thread. Use SSE streaming for the interactive feel. Push agent-generated tasks back into the channel as actionable buttons.
+
+**n8n, Zapier, Make.** Wire agent calls into existing automations. Common shape: trigger from CRM event, hit the matching agent, route the response into the next system, and optionally drop a follow-up task.
+
+**Cursor and Claude Code.** Both work well as a control plane for ad-hoc agent queries while you build. Pair with a Salesforce MCP server to combine CRM context with agent reasoning.
+
+**Custom internal tools.** Anywhere your team already runs scripts, the API is just an HTTP call. The fastest path to value is wiring agent output and task creation into a tool the team uses every day.
+
+## FAQ
+
+**How is this different from the in-app Revenue Agents experience?** Same agent layer. The UI is for individual users. The API is for programmatic, batched, or cross-system workflows.
+
+**Do I need to provision an agent before every conversation?** No. Provision once, reuse. Use `GET /deals/agents` and `GET /companies/agents` to see what already exists.
+
+**How do I continue a multi-turn conversation?** Re-use the `conversation_id` in the URL path on subsequent message POSTs. The thread persists until deleted.
+
+**Do streaming events include tool calls?** No. Tool-call and reasoning events are intentionally not part of the v1 surface. Streaming exposes incremental assistant text and a final `done` event.
+
+**Can I bulk-initialize agents?** v1 has no bulk-initialization endpoint. Run PUTs in parallel and poll.
+
+**Can I use this to write tasks back into HockeyStack?** Yes. `POST /tasks` lets you create tasks programmatically. They show up in the rep cockpit alongside agent-generated tasks. `agent_id` is null for manually created tasks.
+
+**What's the difference between deleting and cancelling a task?** PATCH `status: cancelled` keeps the task visible as a record. DELETE removes it from listings entirely. Use cancel for audit, delete for cleanup.
+
+**How do I avoid hitting the credit cap mid-job?** Pull `/credits/balance` before kicking off batch work. Gate on `remaining_included_credits` and `remaining_on_demand_credits`. Alert on `is_limit_exceeded`.
+
+**Is there a sandbox?** Production endpoints serve all workspaces. For testing, use a dedicated test workspace or scope your work to a known set of test deals.
+
+## Support
+
+Questions, edge cases, or feature requests: [support@hockeystack.com](mailto:support@hockeystack.com). Always include the `request_id` from any error response.
+
+If you're building something interesting on top of the API, talk to your account team. We use customer builds to inform endpoint priorities and shape what becomes a native product feature next.
