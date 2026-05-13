@@ -9,26 +9,10 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Revenue Agents",
-          "icon": "robot",
-          "href": "https://agents-docs.hockeystack.com/sales-agents"
-        }
-      ]
-    },
     "tabs": [
       {
         "tab": "Revenue Agents",
         "pages": [
-          {
-            "group": "Release Notes",
-            "icon": "rocket-launch",
-            "pages": [
-              "apr-22-2026"
-            ]
-          },
           "sales-agents/overview",
           {
             "group": "Configuration",
@@ -85,6 +69,13 @@
           {
             "group": "API",
             "openapi": "https://app.hockeystack.com/api/revenue-agents/v1/openapi.json"
+          },
+          {
+            "group": "Release Notes",
+            "icon": "rocket-launch",
+            "pages": [
+              "apr-22-2026"
+            ]
           }
         ]
       }
