@@ -68,7 +68,8 @@
           },
           {
             "group": "API",
-            "openapi": "https://app.hockeystack.com/api/revenue-agents/v1/openapi.json"
+            "openapi": "https://app.hockeystack.com/api/revenue-agents/v1/openapi.json",
+            "hidden": true
           },
           {
             "group": "Release Notes",
