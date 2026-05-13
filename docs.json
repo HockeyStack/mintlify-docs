@@ -81,12 +81,12 @@
               "sales-agents/security-and-data",
               "sales-agents/guides/agent-apis"
             ]
+          },
+          {
+            "group": "API",
+            "openapi": "https://app.hockeystack.com/api/revenue-agents/v1/openapi.json"
           }
         ]
-      },
-      {
-        "tab": "API",
-        "openapi": "https://app.hockeystack.com/api/revenue-agents/v1/openapi.json"
       }
     ]
   },
